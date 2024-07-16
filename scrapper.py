@@ -10,6 +10,40 @@ from selenium.webdriver.support import expected_conditions as EC
 
 YEARS = list(range(2024, 2022, -1))  # 2024, 2023
 MATCHES = []
+NHL_TEAMS = {
+    "BOS": "Boston Bruins",
+    "BUF": "Buffalo Sabres",
+    "DET": "Detroit Red Wings",
+    "FLA": "Florida Panthers",
+    "MTL": "Montreal Canadiens",
+    "OTT": "Ottawa Senators",
+    "TBL": "Tampa Bay Lightning",
+    "TOR": "Toronto Maple Leafs",
+    "CAR": "Carolina Hurricanes",
+    "CBJ": "Columbus Blue Jackets",
+    "NJD": "New Jersey Devils",
+    "NYI": "New York Islanders",
+    "NYR": "New York Rangers",
+    "PHI": "Philadelphia Flyers",
+    "PIT": "Pittsburgh Penguins",
+    "WSH": "Washington Capitals",
+    "ARI": "Arizona Coyotes",
+    "CHI": "Chicago Blackhawks",
+    "COL": "Colorado Avalanche",
+    "DAL": "Dallas Stars",
+    "MIN": "Minnesota Wild",
+    "NSH": "Nashville Predators",
+    "STL": "St. Louis Blues",
+    "WPG": "Winnipeg Jets",
+    "ANA": "Anaheim Ducks",
+    "CGY": "Calgary Flames",
+    "EDM": "Edmonton Oilers",
+    "LAK": "Los Angeles Kings",
+    "SJS": "San Jose Sharks",
+    "SEA": "Seattle Kraken",
+    "VAN": "Vancouver Canucks",
+    "VGK": "Vegas Golden Knights"
+}
 
 for year in YEARS:
     current_season = str(year-1) + str(year)
@@ -56,11 +90,11 @@ for year in YEARS:
             df = pd.DataFrame(data, columns=headers)
 
             # Add 'Season' column
-            df['Season'] = str(year-1) + "-" + str(year)
+            df['Season'] = year
 
             # Split the 'Game' column into 'Date' and 'Opponent'
             df['Date'] = df['Game'].str[:10]
-            df['Opponent'] = df['Game'].str[-3:]
+            df['Opponent'] = df['Game'].str[-3:].apply(lambda x: NHL_TEAMS.get(x))
 
             # Drop the original 'Game' column
             df.drop(columns=['Game'], inplace=True)
@@ -68,8 +102,6 @@ for year in YEARS:
             # Update MATCHES
             MATCHES.append(df)
 
-            # Print the DataFrame (optional)
-            # print(df)
         else:
             print("Target div or header div not found or not loaded.")
             break
