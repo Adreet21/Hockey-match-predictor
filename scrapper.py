@@ -10,6 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 YEARS = list(range(2024, 2022, -1))  # 2024, 2023
 MATCHES = []
+
+# Dictionary to map team abbreviations to full names
 NHL_TEAMS = {
     "BOS": "Boston Bruins",
     "BUF": "Buffalo Sabres",
@@ -45,6 +47,7 @@ NHL_TEAMS = {
     "VGK": "Vegas Golden Knights"
 }
 
+# Loop through each year
 for year in YEARS:
     current_season = str(year-1) + str(year)
     URL = f"https://www.nhl.com/stats/teams?aggregate=0&reportType=game&seasonFrom={current_season}&seasonTo={current_season}&dateFromSeason&gameType=2&sort=gameDate&page=0&pageSize=50"
