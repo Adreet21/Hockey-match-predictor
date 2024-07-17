@@ -99,8 +99,9 @@ for year in YEARS:
             df['Date'] = df['Game'].str[:10]
             df['Opponent'] = df['Game'].str[-3:].apply(lambda x: NHL_TEAMS.get(x))
 
-            # Drop the original 'Game' column
+            # Drop the original 'Game' column and the 'T' column
             df.drop(columns=['Game'], inplace=True)
+            df.drop(columns=['T'], inplace=True)
 
             # Update MATCHES
             MATCHES.append(df)
