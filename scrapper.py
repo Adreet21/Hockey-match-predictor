@@ -69,15 +69,18 @@ for year in YEARS:
         soup = BeautifulSoup(driver.page_source, 'html.parser')
 
         # Find the header and body elements
-        header_div = soup.select_one('.rt-table-container')
+        header_div = soup.select_one('.rt-thead')
+####### header_div = soup.select_one('.table-header-container') ### OLD CODE FOR THE OLD WEBSITE STRUCTURE ###
         body_div = soup.select_one('.rt-tbody')
 
         if body_div and header_div:
             # Extract column names
-            headers = [header.text.strip() for header in header_div.find_all('div', {'class': 'rt-th'})]
+            headers = [header.text.strip() for header in header_div.find_all('th', {'class': 'rt-th'})]
+########### headers = [header.text.strip() for header in header_div.find_all('div', {'class': 'rt-th'})] ### OLD CODE FOR THE OLD WEBSITE STRUCTURE ###
 
             # Find all rows
-            rows = body_div.find_all('div', {'class': 'rt-tr-group'})
+            rows = body_div.find_all('tr', {'class': 'rt-tr'})
+########### rows = body_div.find_all('div', {'class': 'rt-tr-group'}) ### OLD CODE FOR THE OLD WEBSITE STRUCTURE ###
 
             # Initialize a list to hold the data
             data = []
@@ -85,7 +88,7 @@ for year in YEARS:
             # Extract data from each row
             for row in rows:
                 # Find all columns within the row
-                cols = row.find_all('div', {'class': 'rt-td'})
+                cols = row.find_all('td', {'class': 'rt-td'})
                 cols = [col.text.strip() for col in cols]
                 data.append(cols)
 
@@ -112,11 +115,33 @@ for year in YEARS:
 
         # Check for the "Next" button and click it if available
         try:
-            next_button = driver.find_element(By.CSS_SELECTOR, 'button.next-button:not([disabled])')
-            driver.execute_script("arguments[0].scrollIntoView(true);", next_button)
-            time.sleep(1)  # Wait for scrolling to complete
-            next_button.click()
-            time.sleep(2)  # Adjust the sleep time as needed
+            # Find the 'nav' tag with the role 'navigation'
+            nav_element = driver.find_element(By.CSS_SELECTOR, 'nav[role="navigation"]')
+            # Find all buttons within this 'nav' element
+            buttons = nav_element.find_elements(By.CSS_SELECTOR, 'button')
+            # Check if the second button is present and not disabled
+            if len(buttons) > 1:
+                second_button = buttons[1]
+                is_disabled = second_button.get_attribute("disabled") is not None
+
+                if not is_disabled:
+                    driver.execute_script("arguments[0].scrollIntoView(true);", second_button)
+                    time.sleep(1)  # Wait for scrolling to complete
+                    second_button.click()
+                    time.sleep(2)  # Adjust the sleep time as needed
+                else:
+                    print("The second button is disabled.")
+                    break
+            else:
+                print("The second button was not found.")
+                break
+            
+############# OLD CODE FOR THE OLD WEBSITE STRUCTURE #################################################            
+            # next_button = driver.find_element(By.CSS_SELECTOR, 'button.next-button:not([disabled])')
+            # driver.execute_script("arguments[0].scrollIntoView(true);", next_button)
+            # time.sleep(1)  # Wait for scrolling to complete
+            # next_button.click()
+            # time.sleep(2)  # Adjust the sleep time as needed
         except Exception as e:
             break
 
@@ -125,7 +150,7 @@ for year in YEARS:
 
 # Combine all the collected data
 MATCHES_DF = pd.concat(MATCHES)
-#print(MATCHES_DF)
+# print(MATCHES_DF)
 
 # Save the DataFrame to a CSV file
 MATCHES_DF.to_csv('nhl_matches.csv', index=False)
