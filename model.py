@@ -5,18 +5,14 @@ from sklearn.ensemble import RandomForestClassifier
 data = pd.read_csv('/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/nhl_matches.csv')
 data.head()
 
-data.shape
-
 data["Team"].value_counts() #counting values of team
 
-data.dtypes
 data["Date"] = pd.to_datetime(data["Date"]) #converting to date  
 data["PP%"] = ((data["PP%"].replace('--', np.nan))).astype("float") #conveting the object values in float
 data["Net PP%"] = (data["Net PP%"].replace('--', np.nan)).astype("float")
 data["Net PK%"] = (data["Net PK%"].replace('--', np.nan)).astype("float")
 data["PK%"] = (data["PK%"].replace('--', np.nan)).astype("float")
-
-del data["T"]
+print(data.dtypes)
 
 #encoding the values of opponent teams and day of week
 data["opponent_code"] = data["Opponent"].astype("category").cat.codes
