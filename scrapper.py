@@ -69,7 +69,7 @@ for year in YEARS:
         soup = BeautifulSoup(driver.page_source, 'html.parser')
 
         # Find the header and body elements
-        header_div = soup.select_one('.table-header-container')
+        header_div = soup.select_one('.rt-table-container')
         body_div = soup.select_one('.rt-tbody')
 
         if body_div and header_div:
@@ -125,7 +125,7 @@ for year in YEARS:
 
 # Combine all the collected data
 MATCHES_DF = pd.concat(MATCHES)
-print(MATCHES_DF)
+#print(MATCHES_DF)
 
 # Save the DataFrame to a CSV file
 MATCHES_DF.to_csv('nhl_matches.csv', index=False)
