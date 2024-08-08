@@ -37,10 +37,8 @@ predictions = random_forest.predict(test[predictors])
 
 #Testing the model
 accuracy = accuracy_score(test["W"], predictions)
-print(accuracy)
+print(f'Accuracy = {round(accuracy * 100, 2)}%')
 
 # Table for accurcy scores
 combined = pd.DataFrame(dict(actual = test["W"], predicted = predictions))
 print(pd.crosstab(index = combined["actual"], columns = combined["predicted"]))
-
-#print(precision_score(test["W"], predictions)) #precision score when the model predicts a win vs it actually being a wins.
