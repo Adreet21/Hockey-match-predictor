@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+import game_schedule_scrapper
 
 def predict_results():
     # Edit the path to your file manually
@@ -34,6 +35,10 @@ def predict_results():
     random_forest.fit(train[predictors], train["W"])
     predictions = random_forest.predict(test[predictors])
 
+    #Predictiong all the upcoming matches
+    upcoming_matches = game_schedule_scrapper.fetch_game_schedule()
+    
+
     #Testing the model
     accuracy = accuracy_score(test["W"], predictions)
     print(f'Accuracy = {round(accuracy * 100, 2)}%')
@@ -50,3 +55,6 @@ def predict_results():
     3. we train the model with the data from 2023 to the current date.
     4. We would want to display the accuracy of the prediction. (Optional)
     '''
+
+if __name__ == '__main__':
+    predict_results()
