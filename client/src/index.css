@@ -1,0 +1,441 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+.sectionHeadText {
+  font-size: 5vw;
+  margin: 0;
+  padding: 0;
+  text-shadow: 6px 6px 12px rgba(0, 0, 0, 1); /* Increased shadow for more visibility */
+  font-family: "Bungee Inline", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hash-span {
+  margin-top: -175px;
+  padding-bottom: 100px;
+  display: block;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.hero {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin-top: 4.5rem;
+}
+
+.hero-slider {
+  display: inline-block;
+  animation: 20s slide infinite linear;
+}
+
+.hero-slider img {
+  height: 100%;
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  font-family: "Bungee Inline", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hero-text h1 {
+  font-size: 7vw;
+  margin: 0;
+  padding: 0;
+  text-shadow: 6px 6px 12px rgba(0, 0, 0, 1); /* Increased shadow for more visibility */
+  font-family: "Bungee Inline", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hero-text h2 {
+  font-size: 5vw;
+  margin: 0;
+  padding: 0;
+  text-shadow: 6px 6px 12px rgba(0, 0, 0, 1); /* Increased shadow for more visibility */
+  font-family: "Bungee Inline", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.game-title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+.game-time {
+  color: "FCA311";
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.game-card {
+  cursor: pointer;
+}
+
+.game-card:hover .vertical-timeline-element-content {
+  background-color: #333333 !important;
+  border: 2px solid #FCA311 !important;
+}
+
+.gameTitleText {
+  font-size: 3em; /* Relative to the parent container's font size */
+  margin: 0;
+  padding: 0;
+  text-shadow: 6px 6px 12px rgba(0, 0, 0, 1); /* Increased shadow for more visibility */
+  font-family: "Bungee Inline", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+.gameSubText {
+  font-size: 1.5em; /* Relative to the parent container's font size */
+  margin: 0;
+  padding: 0;
+  text-shadow: 6px 6px 12px rgba(0, 0, 0, 1); /* Increased shadow for more visibility */
+  color: white;
+}
+
+.gameSub2Text {
+  font-size: 1.5em; /* Relative to the parent container's font size */
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
+  padding-right: 15px;
+  text-shadow: 6px 6px 12px rgba(0, 0, 0, 1); /* Increased shadow for more visibility */
+  font-style: italic;
+}
+
+.game-prediction-box {
+  margin-top: 50px;
+  margin-left: 90px;
+  margin-right: 90px;
+  padding: 25px;
+  background: #121212;
+  color: #FCA311;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 1);
+  border: 2px solid #FCA311;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  max-width: 100%; /* Ensures the box does not exceed the width of its container */
+  overflow: hidden; /* Ensures any overflow content is hidden */
+  font-size: 1rem; /* Base font size for the container */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .sectionHeadText {
+    font-size: 8vw;
+    margin: 0;
+    padding: 0;
+    text-shadow: 6px 6px 12px rgba(0, 0, 0, 1); /* Increased shadow for more visibility */
+    font-family: "Bungee Inline", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .game-title {
+    color: white;
+    font-size: 20px !important;
+    font-weight: bold;
+  }
+  .game-time {
+    color: "FCA311";
+    font-size: 17px !important;
+    font-weight: 500;
+  }
+  .gameTitleText {
+    font-size: 2.5em; /* Adjust font size for smaller screens */
+  }
+  .gameSubText {
+    font-size: 1em; /* Adjust font size for smaller screens */
+    padding-top: 2px;
+  }
+  .gameSub2Text {
+    font-size: 1em; /* Adjust font size for smaller screens */
+  }
+  .game-prediction-box {
+    padding: 10px;
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 564px) {
+  .game-prediction-box {
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 10px;
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 440px) {
+  .hero-slider img {
+    height: 27vh;
+    width: auto;
+  }
+  .game-title {
+    color: white;
+    font-size: 14px !important;
+    font-weight: bold;
+  }
+  .game-time {
+    color: "FCA311";
+    font-size: 12px !important;
+    font-weight: 500;
+  }
+  .gameTitleText {
+    font-size: 2em; /* Adjust font size for smaller screens */
+  }
+}
+
+.date-text {
+  color: #FCA311;
+  font-size: 17px; /* Adjust the size as needed */
+  text-shadow: 1px 1px 2px #000000; /* Adds a shadow for better visibility */
+}
+
+.vertical-timeline::before {
+  background: #FCA311; /* Custom color for the timeline line */
+}
+
+.vertical-timeline-element-icon {
+  box-shadow: 0 0 0 4px #FCA311; /* Custom color for the icon's placeholder border */
+}
+
+.footer {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+
+.black-gradient {
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.violet-gradient {
+  background: #804dee;
+  background: linear-gradient(-90deg, #804dee 0%, rgba(60, 51, 80, 0) 100%);
+  background: -webkit-linear-gradient(
+    -90deg,
+    #804dee 0%,
+    rgba(60, 51, 80, 0) 100%
+  );
+}
+
+.green-pink-gradient {
+  background: "#00cea8";
+  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+}
+
+.orange-text-gradient {
+  background: #f12711; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #f12711,
+    #f5af19
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #f12711,
+    #f5af19
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.green-text-gradient {
+  background: #11998e; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #11998e,
+    #38ef7d
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #11998e,
+    #38ef7d
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blue-text-gradient {
+  /* background: -webkit-linear-gradient(#eee, #333); */
+  background: #56ccf2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #2f80ed,
+    #56ccf2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #2f80ed,
+    #56ccf2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pink-text-gradient {
+  background: #ec008c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #ec008c,
+    #fc6767
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #ec008c,
+    #fc6767
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.loading-screen {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid white;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes mulShdSpin {
+  0%,
+  100% {
+    box-shadow: 0em -2.6em 0em 0em #ffffff,
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.5),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);
+  }
+  12.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.7),
+      1.8em -1.8em 0 0em #ffffff, 2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5);
+  }
+  25% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.5),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7), 2.5em 0em 0 0em #ffffff,
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  37.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.7), 1.75em 1.75em 0 0em #ffffff,
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.5),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7), 0em 2.5em 0 0em #ffffff,
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  62.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.5),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.7), -1.8em 1.8em 0 0em #ffffff,
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  75% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.5),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7), -2.6em 0em 0 0em #ffffff,
+      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
+  }
+  87.5% {
+    box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
+      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
+      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
+      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
+      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
+      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
+      -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
+  }
+}
