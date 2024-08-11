@@ -112,10 +112,6 @@ def fetch_game_schedule():
     # Convert the list to a nicely formatted JSON string
     SCHEDULE = json.dumps(SCHEDULE, indent=4)
 
-    # Write the JSON string to a file
-    with open('schedule.json', 'w') as json_file:
-        json_file.write(SCHEDULE)
-
     return SCHEDULE
 
 if __name__ == "__main__":

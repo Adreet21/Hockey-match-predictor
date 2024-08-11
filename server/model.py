@@ -1,60 +1,72 @@
 import pandas as pd
 import numpy as np
+import json
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
 import game_schedule_scrapper
 
 def predict_results():
-    # Edit the path to your file manually
-    data = pd.read_csv('nhl_matches.csv')
-    data.head()
+    # Load the historical data
+    data = pd.read_csv('/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/nhl_matches.csv')
+    
+    # Preprocess the data
+    data["Date"] = pd.to_datetime(data["Date"])  # Convert to datetime
+    data["PP%"] = data["PP%"].replace('--', np.nan).astype("float")  # Convert to float
+    data["Net PP%"] = data["Net PP%"].replace('--', np.nan).astype("float")
+    data["Net PK%"] = data["Net PK%"].replace('--', np.nan).astype("float")
+    data["PK%"] = data["PK%"].replace('--', np.nan).astype("float")
 
-    #counting values of team
-    data["Team"].value_counts()
-
-    # Converting the data types
-    data["Date"] = pd.to_datetime(data["Date"]) #converting to date  
-    data["PP%"] = ((data["PP%"].replace('--', np.nan))).astype("float") #conveting the object values in float
-    data["Net PP%"] = (data["Net PP%"].replace('--', np.nan)).astype("float")
-    data["Net PK%"] = (data["Net PK%"].replace('--', np.nan)).astype("float")
-    data["PK%"] = (data["PK%"].replace('--', np.nan)).astype("float")
-
-    #encoding the values of opponent teams and day of week
+    # Encode categorical variables
     data["opponent_code"] = data["Opponent"].astype("category").cat.codes
     data["day_code"] = data["Date"].dt.dayofweek
 
-    #random forest initializer
-    random_forest = RandomForestClassifier(n_estimators = 60, min_samples_split = 10, random_state = 1)
+    # Initialize Random Forest classifier
+    random_forest = RandomForestClassifier(n_estimators=60, min_samples_split=10, random_state=1)
 
-    train = data[data["Date"] < '2024-01-01'] #training data before 2024 season
-    test = data[data["Date"] >= '2024-01-01']  #testing data for 2024 season
+    # Train the model on the entire dataset
+    predictors = ["opponent_code", "day_code", "GF/GP", "GA/GP", "Net PP%", "Net PK%", "SA/GP", "FOW%", "ROW", "RW"]
+    random_forest.fit(data[predictors], data["W"])
 
-    predictors = ["opponent_code","day_code","GF/GP","GA/GP","Net PP%","Net PK%","SA/GP","FOW%","ROW","RW"] #predictors
-
-    #Training the model
-    random_forest.fit(train[predictors], train["W"])
-    predictions = random_forest.predict(test[predictors])
-
-    #Predictiong all the upcoming matches
+    # Fetch upcoming matches for the next 7 days
     upcoming_matches = game_schedule_scrapper.fetch_game_schedule()
     
+    # Check the structure of upcoming_matches
+    print("Structure of upcoming_matches:", upcoming_matches)
+    
+    # Ensure upcoming_matches is a list of dictionaries
+    if not isinstance(upcoming_matches, list) or not all(isinstance(game, dict) for game in upcoming_matches):
+        raise ValueError("upcoming_matches should be a list of dictionaries.")
 
-    #Testing the model
-    accuracy = accuracy_score(test["W"], predictions)
-    print(f'Accuracy = {round(accuracy * 100, 2)}%')
+    # Filter matches to include only the next 7 days
+    today = pd.Timestamp.today()
+    upcoming_matches = [game for game in upcoming_matches if pd.to_datetime(game["date"]) <= today + pd.Timedelta(days=7)]
 
-    # Table for accurcy scores
-    combined = pd.DataFrame(dict(actual = test["W"], predicted = predictions))
-    print(pd.crosstab(index = combined["actual"], columns = combined["predicted"]))
+    # Predict outcomes for upcoming matches
+    predictions = []
+    for game in upcoming_matches:
+        game_data = {
+            "opponent_code": data[data["Team"] == game["away_team"]]["opponent_code"].iloc[0],
+            "day_code": pd.to_datetime(game["date"]).dayofweek,
+            "GF/GP": np.nan,  # Placeholder, need to populate based on your data structure
+            "GA/GP": np.nan,  # Placeholder, need to populate based on your data structure
+            "Net PP%": np.nan,  # Placeholder, need to populate based on your data structure
+            "Net PK%": np.nan,  # Placeholder, need to populate based on your data structure
+            "SA/GP": np.nan,  # Placeholder, need to populate based on your data structure
+            "FOW%": np.nan,  # Placeholder, need to populate based on your data structure
+            "ROW": np.nan,  # Placeholder, need to populate based on your data structure
+            "RW": np.nan,  # Placeholder, need to populate based on your data structure
+        }
+        prediction = random_forest.predict(pd.DataFrame([game_data]))
+        predictions.append({
+            "date": game["date"],
+            "time": game["time"],
+            "home_team": game["home_team"],
+            "away_team": game["away_team"],
+            "predicted_winner": game["home_team"] if prediction == 1 else game["away_team"]
+        })
 
-
-    '''
-    We have to edit this so that it predicts the future matches.
-    1. We need the data for the next 7 upcoming matches.
-    2. We need to predict the outcome of those matches.
-    3. we train the model with the data from 2023 to the current date.
-    4. We would want to display the accuracy of the prediction. (Optional)
-    '''
+    # Output predictions to a JSON file
+    with open('predictions.json', 'w') as json_file:
+        json.dump(predictions, json_file, indent=4)
 
 if __name__ == '__main__':
     predict_results()
