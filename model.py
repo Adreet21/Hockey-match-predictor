@@ -40,3 +40,12 @@ print(f'Accuracy = {round(accuracy * 100, 2)}%')
 # Table for accurcy scores
 combined = pd.DataFrame(dict(actual = test["W"], predicted = predictions))
 print(pd.crosstab(index = combined["actual"], columns = combined["predicted"]))
+
+
+'''
+We have to edit this so that it predicts the future matches.
+1. We need the data for the next 7 upcoming matches.
+2. We need to predict the outcome of those matches.
+3. we train the model with the data from 2023 to the current date.
+4. We would want to display the accuracy of the prediction. (Optional)
+'''
