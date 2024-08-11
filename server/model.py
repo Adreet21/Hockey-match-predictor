@@ -46,14 +46,14 @@ def predict_results():
         game_data = {
             "opponent_code": data[data["Team"] == game["away_team"]]["opponent_code"].iloc[0],
             "day_code": pd.to_datetime(game["date"]).dayofweek,
-            "GF/GP": np.nan,  # Placeholder, need to populate based on your data structure
-            "GA/GP": np.nan,  # Placeholder, need to populate based on your data structure
-            "Net PP%": np.nan,  # Placeholder, need to populate based on your data structure
-            "Net PK%": np.nan,  # Placeholder, need to populate based on your data structure
-            "SA/GP": np.nan,  # Placeholder, need to populate based on your data structure
-            "FOW%": np.nan,  # Placeholder, need to populate based on your data structure
-            "ROW": np.nan,  # Placeholder, need to populate based on your data structure
-            "RW": np.nan,  # Placeholder, need to populate based on your data structure
+            "GF/GP": np.nan,
+            "GA/GP": np.nan,
+            "Net PP%": np.nan,
+            "Net PK%": np.nan,
+            "SA/GP": np.nan,
+            "FOW%": np.nan,
+            "ROW": np.nan,
+            "RW": np.nan,
         }
         prediction = random_forest.predict(pd.DataFrame([game_data]))
         predictions.append({
