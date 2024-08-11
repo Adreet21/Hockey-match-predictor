@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-from sklearn.metrics import precision_score
 
 # Edit the path to your file manually
 data = pd.read_csv('nhl_matches.csv')
