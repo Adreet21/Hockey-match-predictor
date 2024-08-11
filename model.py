@@ -18,7 +18,6 @@ data["Net PK%"] = (data["Net PK%"].replace('--', np.nan)).astype("float")
 data["PK%"] = (data["PK%"].replace('--', np.nan)).astype("float")
 
 #encoding the values of opponent teams and day of week
-
 data["opponent_code"] = data["Opponent"].astype("category").cat.codes
 data["day_code"] = data["Date"].dt.dayofweek
 
