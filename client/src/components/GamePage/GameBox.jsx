@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import ReactConfetti from 'react-confetti';
 import LoadingScreen from '../LoadingScreen';
 
@@ -90,27 +91,26 @@ const GameBox = ({ game }) => {
   let away_team_abr = NHL_TEAMS_ABR[game.away_team];
   let home_team_abr = NHL_TEAMS_ABR[game.home_team];
   // sort out which is New York Islanders and which is New York Rangers
-  if ((game.away_team == "New York") || (game.home_team == "New York")) {
-    if (game.away_team == "New York") {
-      if (game.away_team_logo == "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/nyr.png&w=40&h=40&scale=crop&cquality=40&location=origin") {
-        away_team = "Rangers";
-        away_team_abr = "NYR"
-        game.away_logo = "https://assets.nhle.com/logos/nhl/svg/NYR_dark.svg"
-      } else {
-        away_team = "Islanders";
-        away_team_abr = "NYI"
-        game.away_logo = "https://assets.nhle.com/logos/nhl/svg/NYI_dark.svg"
-      }
+  if (game.away_team == "New York") {
+    if (game.away_team_logo == "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/nyr.png&w=40&h=40&scale=crop&cquality=40&location=origin") {
+      away_team = "Rangers";
+      away_team_abr = "NYR"
+      game.away_logo = "https://assets.nhle.com/logos/nhl/svg/NYR_dark.svg"
     } else {
-      if (game.home_team_logo == "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/nyr.png&w=40&h=40&scale=crop&cquality=40&location=origin") {
-        home_team = "Rangers";
-        home_team_abr = "NYR"
-        game.home_logo = "https://assets.nhle.com/logos/nhl/svg/NYR_dark.svg"
-      } else {
-        home_team = "Islanders";
-        home_team_abr = "NYI"
-        game.home_logo = "https://assets.nhle.com/logos/nhl/svg/NYI_dark.svg"
-      }
+      away_team = "Islanders";
+      away_team_abr = "NYI"
+      game.away_logo = "https://assets.nhle.com/logos/nhl/svg/NYI_dark.svg"
+    }
+  } 
+  if (game.home_team == "New York") {
+    if (game.home_team_logo == "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nhl/500/scoreboard/nyr.png&w=40&h=40&scale=crop&cquality=40&location=origin") {
+      home_team = "Rangers";
+      home_team_abr = "NYR"
+      game.home_logo = "https://assets.nhle.com/logos/nhl/svg/NYR_dark.svg"
+    } else {
+      home_team = "Islanders";
+      home_team_abr = "NYI"
+      game.home_logo = "https://assets.nhle.com/logos/nhl/svg/NYI_dark.svg"
     }
   }
 
@@ -162,62 +162,59 @@ const GameBox = ({ game }) => {
     }
   }, [windowDimension]);
 
-  // useEffect(() => {
-  //   // Dummy API call to Python script
-  //   const fetchPrediction = async () => {
-  //     setLoading(true);
-  //     try {
-  //       // Replace with the actual API endpoint when available
-  //       const response = await fetch('/api/predict-winner', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify({
-  //           away_team: game.away_team,
-  //           home_team: game.home_team,
-  //           date: game.date,
-  //           time: game.time,
-  //         }),
-  //       });
-  //       const data = await response.json();
-        
-  //       if (isMobile || isXSMobile) {
-  //         setWinner(NHL_TEAMS_ABR[data.winner]);
-  //       } else {
-  //         setWinner(data.winner);
-  //       }
-  //       setShowConfetti(true);
+  // Function to format the date
+  const formatDate = (dateString) => {
+    // Remove the day of the week from the date string
+    const trimmedDateString = dateString.replace(/^\w+, /, '');
 
-  //       // Stop confetti after 3 seconds
-  //       const stopConfettiTimer = setTimeout(() => {
-  //         setConfettiPieces(0);
-  //       }, 3000); // 3000 milliseconds = 3 seconds
+    // Parse the trimmed date string
+    const date = new Date(trimmedDateString);
 
-  //       // Cleanup the stop confetti timer if the component is unmounted
-  //       return () => clearTimeout(stopConfettiTimer);
+    // Extract the year, month (0-based, so add 1), and day
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
 
-  //     } catch (error) {
-  //       console.error('Error fetching prediction:', error);
-  //       setWinner('Error fetching prediction');
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchPrediction();
-  // }, [game, isMobile, isXSMobile]);
+    // Return the formatted date string
+    return `${year}/${month}/${day}`;
+  };
 
-  // Timeout before showing winner for Testing Purposes
-  useEffect(() => {
+  // Fetch game prediction from ML part
+  const fetchPrediction = async () => {
     setLoading(true);
-    const timer = setTimeout(() => {
-      if (isMobile || isXSMobile) {
-        setWinner(home_team_abr);
+
+    // Format the parameters so that it matches format of the csv file
+    let away = game.away_team + " " + away_team;
+    let home = game.home_team + " " + home_team;
+    let date = formatDate(game.date)
+
+    try {
+      const response = await axios.post('http://localhost:8080/game-prediction', {
+        away_team: away,
+        home_team: home,
+        date: date,
+      });
+
+      if (response.data.winner == away) {
+        // Away Team Wins
+        if (isMobile || isXSMobile) {
+          setWinner(away_team_abr);
+        } else {
+          setWinner(away_team);
+        }
+      } else if (response.data.winner == home) {
+        // Home Team Wins
+        if (isMobile || isXSMobile) {
+          setWinner(home_team_abr);
+        } else {
+          setWinner(home_team);
+        }
       } else {
-        setWinner(home_team);
+        // Draw
+        setWinner("Draw");
       }
+
       setShowConfetti(true);
-      setLoading(false);
 
       // Stop confetti after 3 seconds
       const stopConfettiTimer = setTimeout(() => {
@@ -226,10 +223,17 @@ const GameBox = ({ game }) => {
 
       // Cleanup the stop confetti timer if the component is unmounted
       return () => clearTimeout(stopConfettiTimer);
-    }, 5000); // 5000 milliseconds = 5 seconds
 
-    // Cleanup the main timer if the component is unmounted
-    return () => clearTimeout(timer);
+    } catch (error) {
+      console.error('Error fetching prediction:', error);
+      setWinner('Error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPrediction();
   }, [game, isMobile, isXSMobile]);
 
   return (

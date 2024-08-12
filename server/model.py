@@ -3,6 +3,20 @@ import numpy as np
 import json
 from sklearn.ensemble import RandomForestClassifier
 import game_schedule_scrapper
+import time
+
+
+
+
+#﹀﹀﹀ TEMPORARY PREDICTOR ﹀﹀﹀#
+def predict_winner(away_team, home_team, date):
+    time.sleep(5)
+    return home_team
+#︿︿︿ TEMPORARY PREDICTOR ︿︿︿#
+
+
+
+
 
 def predict_results():
     # Load the historical data
@@ -67,6 +81,3 @@ def predict_results():
     # Output predictions to a JSON file
     with open('predictions.json', 'w') as json_file:
         json.dump(predictions, json_file, indent=4)
-
-if __name__ == '__main__':
-    predict_results()
