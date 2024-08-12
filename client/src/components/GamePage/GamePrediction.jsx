@@ -1,12 +1,11 @@
-import { useParams } from 'react-router-dom';
-import { game_schedule } from '../../constants';
+import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import GameBox from './GameBox';
 import Footer from './Footer';
 
 const GamePrediction = () => {
-  const { id } = useParams();
-  const game = game_schedule[id];
+  const location = useLocation();
+  const game = location.state?.game;
 
   if (!game) {
     return <div>Game not found</div>;

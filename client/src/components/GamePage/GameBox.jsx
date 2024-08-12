@@ -181,7 +181,12 @@ const GameBox = ({ game }) => {
   //         }),
   //       });
   //       const data = await response.json();
-  //       setWinner(data.winner);
+        
+  //       if (isMobile || isXSMobile) {
+  //         setWinner(NHL_TEAMS_ABR[data.winner]);
+  //       } else {
+  //         setWinner(data.winner);
+  //       }
   //       setShowConfetti(true);
 
   //       // Stop confetti after 3 seconds
@@ -200,13 +205,17 @@ const GameBox = ({ game }) => {
   //     }
   //   };
   //   fetchPrediction();
-  // }, [game]);
+  // }, [game, isMobile, isXSMobile]);
 
   // Timeout before showing winner for Testing Purposes
   useEffect(() => {
     setLoading(true);
     const timer = setTimeout(() => {
-      setWinner(home_team);
+      if (isMobile || isXSMobile) {
+        setWinner(home_team_abr);
+      } else {
+        setWinner(home_team);
+      }
       setShowConfetti(true);
       setLoading(false);
 
@@ -221,7 +230,7 @@ const GameBox = ({ game }) => {
 
     // Cleanup the main timer if the component is unmounted
     return () => clearTimeout(timer);
-  }, [game]);
+  }, [game, isMobile, isXSMobile]);
 
   return (
     <div className='pt-[5rem] pb-20'>
@@ -237,25 +246,63 @@ const GameBox = ({ game }) => {
         <>
           <div className='flex flex-col items-center'>
             <div className='flex items-center mb-2'>
-              <h1 className='gameTitleText text-white'>{isMobile ? away_team_abr : away_team}</h1>
-              <img src={game.away_logo} alt={game.away_team} className={`${isMobile ? "w-[9vw] h-[9vw]" : "w-[60px] h-[60px]"} ml-2 mr-5`}/>
-              <h1 className='gameTitleText'>vs.</h1>
-              <img src={game.home_logo} alt={game.home_team} className={`${isMobile ? "w-[9vw] h-[9vw]" : "w-[60px] h-[60px]"} ml-5 mr-2`}/>
-              <h1 className='gameTitleText text-white'>{isMobile ? home_team_abr : home_team}</h1>
+              
+              {isMobile ? 
+                <>
+                  <h1 className='gameTitleText text-white'>{isMobile ? away_team_abr : away_team}</h1>
+                  <img src={game.away_logo} alt={game.away_team} className={`${isMobile ? "w-[9vw] h-[9vw]" : "w-[60px] h-[60px]"} ml-2 mr-5`}/>
+                </>
+                :
+                <div className='flex flex-col'>
+                  <p className='gameSubText text-left'>{game.away_team}</p>
+                  <div className='flex flex-row items-center'>
+                    <h1 className='gameTitleText text-white'>{isMobile ? away_team_abr : away_team}</h1>
+                    <img src={game.away_logo} alt={game.away_team} className={`${isMobile ? "w-[9vw] h-[9vw]" : "w-[60px] h-[60px]"} ml-2 mr-5`}/>
+                  </div>
+                </div>
+              }
+
+              <h1 className={`gameTitleText ${isLaptop ? 'vs-text' : null}`}>vs.</h1>
+
+              {isMobile ? 
+                <>
+                  <img src={game.home_logo} alt={game.home_team} className={`${isMobile ? "w-[9vw] h-[9vw]" : "w-[60px] h-[60px]"} ml-5 mr-2`}/>
+                  <h1 className='gameTitleText text-white'>{isMobile ? home_team_abr : home_team}</h1>
+                </>
+                :
+                <div className='flex flex-col'>
+                  <p className='gameSubText text-right'>{game.home_team}</p>
+                  <div className='flex flex-row items-center'>
+                    <img src={game.home_logo} alt={game.home_team} className={`${isMobile ? "w-[9vw] h-[9vw]" : "w-[60px] h-[60px]"} ml-5 mr-2`}/>
+                    <h1 className='gameTitleText text-white'>{isMobile ? home_team_abr : home_team}</h1>
+                  </div>
+                </div>
+              }
+              
             </div>
           </div>
         </> 
         : 
         <div className='flex flex-col items-center'>
-          <div className='flex items-center mb-2'>
-            <h1 className='gameTitleText text-white'>{isXSMobile ? away_team_abr : away_team}</h1>
-            <img src={game.away_logo} alt={game.away_team} className={`${isXSMobile ? "w-[13vw] h-[13vw]" : "w-[60px] h-[60px]"} ml-3 mr-4`}/>
+
+          <div className='flex flex-col'>
+            {!isXSMobile && <p className='gameSubText text-left'>{game.away_team}</p>}
+            <div className='flex flex-row items-center'>
+              <h1 className='gameTitleText text-white'>{isXSMobile ? away_team_abr : away_team}</h1>
+              <img src={game.away_logo} alt={game.away_team} className={`${isXSMobile ? "w-[13vw] h-[13vw]" : "w-[60px] h-[60px]"} ml-3 mr-4`}/>
+            </div>
           </div>
+
           <h1 className='gameTitleText'>vs.</h1>
-          <div className='flex items-center mt-2'>
-            <h1 className='gameTitleText text-white'>{isXSMobile ? home_team_abr : home_team}</h1>
-            <img src={game.home_logo} alt={game.home_team} className={`${isXSMobile ? "w-[13vw] h-[13vw]" : "w-[60px] h-[60px]"} ml-3 mr-4`}/>
+
+          <div className='flex flex-col'>
+            {!isXSMobile && <p className='gameSubText text-left'>{game.home_team}</p>}
+            <div className='flex flex-row items-center'>
+              <h1 className='gameTitleText text-white'>{isXSMobile ? home_team_abr : home_team}</h1>
+              <img src={game.home_logo} alt={game.home_team} className={`${isXSMobile ? "w-[13vw] h-[13vw]" : "w-[60px] h-[60px]"} ml-3 mr-4`}/>
+            </div>
           </div>
+
         </div>
         }
         <p className='gameSubText'>{game.date}</p>
@@ -264,7 +311,7 @@ const GameBox = ({ game }) => {
         <div className='flex justify-center items-center mt-2'>
           <p className='gameSub2Text'>Predicted Winner: </p>
           {loading ? (
-            <LoadingScreen />
+            <LoadingScreen message={"Analyzing..."}/>
           ) : (
             <h1 className='gameTitleText text-white'>{winner}</h1>
           )}

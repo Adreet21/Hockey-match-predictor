@@ -108,11 +108,4 @@ def fetch_game_schedule():
                                 'home_logo': NHL_TEAMS.get(home_team),
                                 }
                             SCHEDULE.append(game_details)
-                            
-    # Convert the list to a nicely formatted JSON string
-    SCHEDULE = json.dumps(SCHEDULE, indent=4)
-
     return SCHEDULE
-
-if __name__ == "__main__":
-    fetch_game_schedule()

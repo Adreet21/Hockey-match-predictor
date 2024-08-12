@@ -1,18 +1,20 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from 'react-vertical-timeline-component';
 import { useNavigate } from 'react-router-dom';
 import 'react-vertical-timeline-component/style.min.css';
-import { game_schedule } from '../constants';
 import { SectionWrapper } from '../hoc';
+import LoadingScreen from './LoadingScreen';
 
 const GameCard = ({ game, index }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/game/${index}`);
+    // navigate(`/game/${index}`);
+    navigate(`/game/${index}`, { state: { game } });
   };
 
   return (
@@ -59,13 +61,36 @@ const GameCard = ({ game, index }) => {
 };
 
 const Timeline = () => {
+  const [loading, setLoading] = useState(true);
+  const [gameSchedule, setGameSchedule] = useState(null)
+
+  const fetchAPI = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get("http://localhost:8080/game-schedule");
+      setGameSchedule(response.data);
+    } catch {
+      console.error('Error fetching game schedule:', error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchAPI();
+  }, [])
+
   return (
     <div className="flex flex-col pb-20">
-      <VerticalTimeline>
-        {game_schedule.map((game, index) => (
-          <GameCard key={`game-${index}`} game={game} index={index} />
-        ))}
-      </VerticalTimeline>
+      {loading ? (
+        <LoadingScreen message={"Fetching Game Schedule..."} />
+      ) : (
+        <VerticalTimeline>
+          {gameSchedule.map((game, index) => (
+            <GameCard key={`game-${index}`} game={game} index={index} />
+          ))}
+        </VerticalTimeline>
+      )}
     </div>
   );
 };

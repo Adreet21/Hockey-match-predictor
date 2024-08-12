@@ -5,8 +5,6 @@ import Schedule from './Schedule';
 import Timeline from './Timeline';
 import GamePrediction from './GamePage/GamePrediction';
 import Footer from './Footer';
-
-import Loader from './Loader';
 import LoadingScreen from './LoadingScreen';
 
 export {
@@ -17,6 +15,5 @@ export {
   Timeline,
   GamePrediction,
   Footer,
-  Loader,
   LoadingScreen,
 }
