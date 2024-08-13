@@ -15,12 +15,9 @@ def predict_winner(away_team, home_team, date):
 #︿︿︿ TEMPORARY PREDICTOR ︿︿︿#
 
 
-
-
-
 def predict_results():
     # Load the historical data
-    data = pd.read_csv('/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/nhl_matches.csv')
+    data = pd.read_csv('nhl_matches.csv')
     
     # Preprocess the data
     data["Date"] = pd.to_datetime(data["Date"])  # Convert to datetime
@@ -40,6 +37,10 @@ def predict_results():
     predictors = ["opponent_code", "day_code", "GF/GP", "GA/GP", "Net PP%", "Net PK%", "SA/GP", "FOW%", "ROW", "RW"]
     random_forest.fit(data[predictors], data["W"])
 
+    #getting the value of ungiven match predictors
+    ungiven_predictors = ["GF/GP", "GA/GP", "Net PP%", "Net PK%", "SA/GP", "FOW%", "ROW", "RW"]
+    team_averages = data.groupby('Team')[ungiven_predictors].mean().reset_index()
+
     # Fetch upcoming matches for the next 7 days
     upcoming_matches = game_schedule_scrapper.fetch_game_schedule()
     
@@ -54,20 +55,26 @@ def predict_results():
     today = pd.Timestamp.today()
     upcoming_matches = [game for game in upcoming_matches if pd.to_datetime(game["date"]) <= today + pd.Timedelta(days=7)]
 
+    
+
     # Predict outcomes for upcoming matches
     predictions = []
     for game in upcoming_matches:
+        
+        home_team_avg = team_averages[team_averages["Team"] == game["home_team"]].iloc[0]
+        away_team_avg = team_averages[team_averages["Team"] == game["away_team"]].iloc[0]
+    
         game_data = {
             "opponent_code": data[data["Team"] == game["away_team"]]["opponent_code"].iloc[0],
             "day_code": pd.to_datetime(game["date"]).dayofweek,
-            "GF/GP": np.nan,
-            "GA/GP": np.nan,
-            "Net PP%": np.nan,
-            "Net PK%": np.nan,
-            "SA/GP": np.nan,
-            "FOW%": np.nan,
-            "ROW": np.nan,
-            "RW": np.nan,
+            "GF/GP": (away_team_avg["GF/GP"] + home_team_avg["GF/GP"]) / 2,
+            "GA/GP": (away_team_avg["GA/GP"] + home_team_avg["GA/GP"]) / 2,
+            "Net PP%": (away_team_avg["Net PP%"] + home_team_avg["Net PP%"]) / 2,
+            "Net PK%": (away_team_avg["Net PK%"] + home_team_avg["Net PK%"]) / 2,
+            "SA/GP": (away_team_avg["SA/GP"] + home_team_avg["SA/GP"]) / 2,
+            "FOW%": (away_team_avg["FOW%"] + home_team_avg["FOW%"]) / 2,
+            "ROW": (away_team_avg["ROW"] + home_team_avg["ROW"]) / 2,
+            "RW": (away_team_avg["RW"] + home_team_avg["RW"]) / 2
         }
         prediction = random_forest.predict(pd.DataFrame([game_data]))
         predictions.append({
@@ -78,6 +85,7 @@ def predict_results():
             "predicted_winner": game["home_team"] if prediction == 1 else game["away_team"]
         })
 
-    # Output predictions to a JSON file
+        # print(game_data)
+        # Output predictions to a JSON file
     with open('predictions.json', 'w') as json_file:
         json.dump(predictions, json_file, indent=4)
