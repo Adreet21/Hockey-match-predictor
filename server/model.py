@@ -4,7 +4,6 @@ import json
 from sklearn.ensemble import RandomForestClassifier
 import game_schedule_scrapper
 
-#﹀﹀﹀ TEMPORARY PREDICTOR ﹀﹀﹀#
 def predict_winner(away_team, home_team, date):
     
     data = pd.read_csv('nhl_matches.csv')
@@ -35,8 +34,6 @@ def predict_winner(away_team, home_team, date):
     home_team_avg = team_averages[team_averages["Team"] == home_team].iloc[0]
     away_team_avg = team_averages[team_averages["Team"] == away_team].iloc[0]
 
-   
-    
     #this list will contain the data about prediction
     predictions = []
 
@@ -58,17 +55,7 @@ def predict_winner(away_team, home_team, date):
     game_data_list.append(game_data)
     game_data_df = pd.DataFrame(game_data_list)
 
-    
-    
-    
-    
     prediction = random_forest.predict(game_data_df)
     predicted_winner = home_team if prediction == 1 else away_team
 
     return predicted_winner
-    
-# #︿︿︿ TEMPORARY PREDICTOR ︿︿︿#
-
-if __name__ == '__main__':
-    
-    print(predict_winner("Boston Bruins","Winnipeg Jets","2024/09/21"))
