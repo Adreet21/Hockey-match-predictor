@@ -10,6 +10,14 @@ import { SectionWrapper } from '../hoc';
 import LoadingScreen from './LoadingScreen';
 
 const GameCard = ({ game, index }) => {
+  // Fix Montreal naming issue
+  if (game.away_team == "Montreal") {
+    game.away_team = "Montréal";
+  }
+  if (game.home_team == "Montreal") {
+    game.home_team = "Montréal";
+  }
+
   const navigate = useNavigate();
 
   const handleClick = () => {

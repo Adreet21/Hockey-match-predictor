@@ -3,7 +3,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
+from selenium.webdriver.common.by import By
 
 def fetch_nhl_stats():
     
@@ -16,7 +16,7 @@ def fetch_nhl_stats():
         "BUF": "Buffalo Sabres",
         "DET": "Detroit Red Wings",
         "FLA": "Florida Panthers",
-        "MTL": "Montreal Canadiens",
+        "MTL": "Montréal Canadiens",
         "OTT": "Ottawa Senators",
         "TBL": "Tampa Bay Lightning",
         "TOR": "Toronto Maple Leafs",
@@ -116,8 +116,12 @@ def fetch_nhl_stats():
             try:
                 # Find the 'nav' tag with the role 'navigation'
                 nav_element = driver.find_element(By.CSS_SELECTOR, 'nav[role="navigation"]')
+                # nav_element = soup.select_one('nav[role="navigation"]')
+
                 # Find all buttons within this 'nav' element
                 buttons = nav_element.find_elements(By.CSS_SELECTOR, 'button')
+                # buttons = nav_element.select('button')
+
                 # Check if the second button is present and not disabled
                 if len(buttons) > 1:
                     second_button = buttons[1]
@@ -132,7 +136,7 @@ def fetch_nhl_stats():
                         print("The second button is disabled.")
                         break
                 else:
-                    print("The second button was not found.")
+                    print("There is no second button.")
                     break
                 
     ############# OLD CODE FOR THE OLD WEBSITE STRUCTURE #################################################            
@@ -142,6 +146,7 @@ def fetch_nhl_stats():
                 # next_button.click()
                 # time.sleep(2)  # Adjust the sleep time as needed
             except Exception as e:
+                print("The second button was not found.")
                 break
 
         # Clean up
@@ -153,3 +158,7 @@ def fetch_nhl_stats():
 
     # Save the DataFrame to a CSV file
     MATCHES_DF.to_csv('nhl_matches.csv', index=False)
+
+
+if __name__=="__main__":
+    fetch_nhl_stats()

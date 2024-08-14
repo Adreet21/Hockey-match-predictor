@@ -18,7 +18,7 @@ const GameBox = ({ game }) => {
     "Buffalo": "Sabres",
     "Detroit": "Red Wings",
     "Florida": "Panthers",
-    "Montreal": "Canadiens",
+    "Montréal": "Canadiens",
     "Ottawa": "Senators",
     "Tampa Bay": "Lightning",
     "Toronto": "Maple Leafs",
@@ -53,7 +53,7 @@ const GameBox = ({ game }) => {
     "Buffalo": "BUF",
     "Detroit": "DET",
     "Florida": "FLA",
-    "Montreal": "MTL",
+    "Montréal": "MTL",
     "Ottawa": "OTT",
     "Tampa Bay": "TBL",
     "Toronto": "TOR",
@@ -209,6 +209,9 @@ const GameBox = ({ game }) => {
         } else {
           setWinner(home_team);
         }
+      } else if (response.data.winner == "No historical data available on Utah") {
+        // No historical data available on Utah
+        setWinner("No Data");
       } else {
         // Draw
         setWinner("Draw");

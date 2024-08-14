@@ -6,6 +6,9 @@ import game_schedule_scrapper
 
 def predict_winner(away_team, home_team, date):
     
+    if away_team == "Utah Utah" or home_team == "Utah Utah":
+        return "No historical data available on Utah"
+    
     data = pd.read_csv('nhl_matches.csv')
     
     # Preprocess the data
