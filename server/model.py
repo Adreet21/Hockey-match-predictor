@@ -1,9 +1,7 @@
 import pandas as pd
 import numpy as np
 import time
-import json
 from sklearn.ensemble import RandomForestClassifier
-import game_schedule_scrapper
 
 def predict_winner(away_team, home_team, date):
     
@@ -24,7 +22,7 @@ def predict_winner(away_team, home_team, date):
     data["day_code"] = data["Date"].dt.dayofweek
 
     # Initialize Random Forest classifier
-    random_forest = RandomForestClassifier(n_estimators=60, min_samples_split=10, random_state=1)
+    random_forest = RandomForestClassifier(n_estimators = 60, min_samples_split = 10, random_state = 1)
 
     # Train the model on the entire dataset
     predictors = ["opponent_code", "day_code", "GF/GP", "GA/GP", "Net PP%", "Net PK%", "SA/GP", "FOW%", "ROW", "RW"]
