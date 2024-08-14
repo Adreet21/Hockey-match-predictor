@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import time
 import json
 from sklearn.ensemble import RandomForestClassifier
 import game_schedule_scrapper
@@ -57,6 +58,7 @@ def predict_winner(away_team, home_team, date):
         }
     game_data_list.append(game_data)
     game_data_df = pd.DataFrame(game_data_list)
+    time.sleep(2)
 
     prediction = random_forest.predict(game_data_df)
     predicted_winner = home_team if prediction == 1 else away_team
