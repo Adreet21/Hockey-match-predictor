@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import game_schedule_scrapper
-import scrapper
 import model
 
 app = Flask(__name__)
