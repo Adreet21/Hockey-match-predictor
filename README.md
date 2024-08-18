@@ -1,3 +1,4 @@
+
 ![Webpage demo](https://github.com/user-attachments/assets/cfee96ae-91cf-416b-9edd-b33a148f36e2)
 
 # Hockey match predictor
@@ -38,9 +39,7 @@ After it is done next you will have to run the BlockChain.java and wait for the 
 After successfully running the code, in the terminal, there should be a prompt asking how much money you want to transfer to wallet B.<br>
 You can send up to 1000 coins. with Multiple transactions. After you finish all your money the program will end and it will say if the block that you used was valid(Not tampered with).<br>
 
-https://github.com/user-attachments/assets/af4601f5-e2a5-4116-a8b0-80ef05e76c50
 
-Demo video: https://www.youtube.com/watch?v=6p6xZo2PXBo
 
 ## Not functioning?
 If you run into difficulties or errors in the code please feel free to reach out.<br>
