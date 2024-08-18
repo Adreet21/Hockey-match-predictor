@@ -1,6 +1,7 @@
 
 ![Webpage demo](https://github.com/user-attachments/assets/cfee96ae-91cf-416b-9edd-b33a148f36e2)
 
+
 # Hockey match predictor
 
 We made an NHL match predictor. It takes in the data of the last 2 years of all the hockey matches and learns from it to predict the outcome of upcoming matches.
