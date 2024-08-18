@@ -10,31 +10,20 @@ Then an ML model is used to predict the upcoming matches with high accuracy.
 
 ## Why we needed Web Scraping?<br>
 To gather all the previous match data we scrapped the Official NHL website to gather all the necessary data and make a CSV file.<br>
-Additionally, we used web scraping again to get the upcoming match schedule 
+Additionally, we used web scraping again to get the upcoming match schedule for our ML model to predict.
 
 ## What did we do with the ML model?
 We trained the model using the previous match data (2022, 2023) from a CSV file that we made by scraping the Official NHL website. We then used the trained model to predict the upcoming matches in 2024. The model works with high accuracy as we used excellent predictors to train and test the model.
 
 
 ## How did we implement it?<br>
-I used each block in the blockchain to keep the transaction data.
-Each block in the blockchain contains one transaction.
-
-I used the SHA-256 algorithm to a string to create hash values for the blocks,<br> 
-apply the ECDSA Signature and verify a string signature to ensure the data was not tampered with.<br>
+We then made a website where all the features tie together and give you a very nice user experience, where you can interact with the website and look the upcoming match you want to know about.
 
                                                                   
 ## Installation
 
-Make a clone of all the files in the repository.<br>
+@maher complete this installation part so that even Tanjil can run this.
 
-You need to have Java and JDK installed.
-
-You have to add the JAR files in the "libs" file in your java library.<br>
-OR<br>
-If you are using vscode you can drag and drop the libs file in the reference folder under the java project section.
-
-After it is done next you will have to run the BlockChain.java and wait for the output in the terminal.
 
 ## Output
 
