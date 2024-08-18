@@ -1,4 +1,4 @@
-https://github.com/user-attachments/assets/1674b5d3-de74-480d-b8ea-a38a4652abef
+![Webpage demo](https://github.com/user-attachments/assets/cfee96ae-91cf-416b-9edd-b33a148f36e2)
 
 # Hockey match predictor
 
