@@ -1,9 +1,6 @@
-
-![Webpage demo (1)](https://github.com/user-attachments/assets/41873a0c-6c7e-4f62-8fb1-e957b00ad656)
-
-
-![Webpage demo](https://github.com/user-attachments/assets/cfee96ae-91cf-416b-9edd-b33a148f36e2)
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cfee96ae-91cf-416b-9edd-b33a148f36e2" alt="Webpage demo" width="600">
+</p>
 
 # Hockey match predictor
 
