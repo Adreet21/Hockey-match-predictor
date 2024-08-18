@@ -2,17 +2,18 @@
   <img src="https://github.com/user-attachments/assets/cfee96ae-91cf-416b-9edd-b33a148f36e2" alt="Webpage demo" width="600">
 </p>
 
-# Hockey match predictor
-
+# Hockey match predictor<br>
 We made an NHL match predictor. It takes in the data of the last 2 years of all the hockey matches and learns from it to predict the outcome of upcoming matches.
 It uses web scraping to gather all the data about the matches already played and the upcoming match schedules.
-Then the ML model reads and learns from the data to train itself. This model is then used to predict the model with high accuracy.
+Then an ML model is used to predict the upcoming matches with high accuracy.
 
 
-## What is Web Scraping?<br>
-A web scraper automates the extraction of data from websites by retrieving and parsing HTML material before storing it in a structured format. Its applications include market research, Competitive Analysis, SEO Monitoring, and more.
+## Why we needed Web Scraping?<br>
+To gather all the previous match data we scrapped the Official NHL website to gather all the necessary data and make a CSV file.<br>
+Additionally, we used web scraping again to get the upcoming match schedule 
 
-###
+## What did we do with the ML model?
+We trained the model using the previous match data (2022, 2023) from a CSV file that we made by scraping the Official NHL website. We then used the trained model to predict the upcoming matches in 2024. The model works with high accuracy as we used excellent predictors to train and test the model.
 
 
 ## How did we implement it?<br>
