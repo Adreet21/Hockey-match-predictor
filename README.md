@@ -28,24 +28,24 @@ This project is a machine learning-based application designed to predict the out
 ## Data Collection
 
 The data used in this project was collected from the NHL's official website through web scraping:<br/>
-•⁠  **Historical Match Data:** We scraped the NHL official website to gather all previous match results, scores, and team performance data. This information was then compiled into a CSV file for analysis.<br/>
-•⁠  **Upcoming Match Schedule:** We also used web scraping to retrieve the upcoming match schedule, which is essential for our machine learning model to generate predictions.<br/>
+&emsp;•⁠  **Historical Match Data:** We scraped the NHL official website to gather all previous match results, scores, and team performance data. This information was then compiled into a CSV file for analysis.<br/>
+&emsp;•⁠  **Upcoming Match Schedule:** We also used web scraping to retrieve the upcoming match schedule, which is essential for our machine learning model to generate predictions.<br/>
 
 ## Modeling
 
 We employed the following machine learning techniques:<br/>
-•⁠  ⁠**Data Preprocessing:** Handling missing values, feature scaling, and encoding categorical variables.<br/>
-•⁠  ⁠**Model Training:** Trained the model using the Random Forest Classifier from scikit-learn, utilizing the historical match data collected by scraping the NHL's official website.<br/>
-•  **Prediction:** Used the trained model to predict outcomes for upcoming matches based on the latest schedule data.<br/>
-•⁠  ⁠**Evaluation:** The model was evaluated using metrics such as accuracy, precision, recall, and AUC-ROC.<br/>
+&emsp;•⁠  ⁠**Data Preprocessing:** Handling missing values, feature scaling, and encoding categorical variables.<br/>
+&emsp;•⁠  ⁠**Model Training:** Trained the model using the Random Forest Classifier from scikit-learn, utilizing the historical match data collected by scraping the NHL's official website.<br/>
+&emsp;•  **Prediction:** Used the trained model to predict outcomes for upcoming matches based on the latest schedule data.<br/>
+&emsp;•⁠  ⁠**Evaluation:** The model was evaluated using metrics such as accuracy, precision, recall, and AUC-ROC.<br/>
 
 ## Results
 
 The final model was trained on 2 seasons of hockey data and tested using the K-fold cross-validation technique. The model achieved:<br/>
-•⁠  ⁠**Accuracy:** XX%<br/>
-•⁠  ⁠**Precision:** XX%<br/>
-•⁠  ⁠**Recall:** XX%<br/>
-•⁠  ⁠**AUC-ROC:** XX%<br/>
+&emsp;•⁠  ⁠**Accuracy:** XX%<br/>
+&emsp;•⁠  ⁠**Precision:** XX%<br/>
+&emsp;•⁠  ⁠**Recall:** XX%<br/>
+&emsp;•⁠  ⁠**AUC-ROC:** XX%<br/>
 
 ## Installation
 
@@ -87,17 +87,17 @@ To run this project locally, follow these steps:<br/>
 ## Contributors
 
 •⁠  ⁠**Maher Nurul Huda**<br/>
-   •⁠  Developed the React website that showcases our project.<br/>
-   •⁠  Wrote the Python web scraping code using Selenium to gather both upcoming game schedules and all historical hockey game data and stats.<br/>
-   •⁠  Integrated the backend and frontend code, handling all GET and POST requests for smooth data flow between the model and the user interface.<br/>
+&emsp;•⁠  Developed the React website that showcases our project.<br/>
+&emsp;•⁠  Wrote the Python web scraping code using Selenium to gather both upcoming game schedules and all historical hockey game data and stats.<br/>
+&emsp;•⁠  Integrated the backend and frontend code, handling all GET and POST requests for smooth data flow between the model and the user interface.<br/>
 •⁠  ⁠**Syed Shahmeer Rahman**<br/>
-   •⁠  Preprocessed the collected data, handling missing values, feature scaling, and data transformations.<br/>
-   •⁠  Structured the data for machine learning input.<br/>
-   •⁠  Optimized the data pipeline to ensure efficient processing and integration with the machine learning model.<br/>
+&emsp;•⁠  Preprocessed the collected data, handling missing values, feature scaling, and data transformations.<br/>
+&emsp;•⁠  Structured the data for machine learning input.<br/>
+&emsp;•⁠  Optimized the data pipeline to ensure efficient processing and integration with the machine learning model.<br/>
 •⁠  ⁠**Sadman Sami**<br/>
-   •⁠  Implemented the Random Forest Classifier to train the model using the preprocessed data.<br/>
-   •⁠  Developed the prediction logic for forecasting game outcomes.<br/>
-   •⁠  Tested the trained model using the K-fold cross-validation technique, evaluating accuracy, precision, recall, and AUC-ROC metrics.<br/>
+&emsp;•⁠  Implemented the Random Forest Classifier to train the model using the preprocessed data.<br/>
+&emsp;•⁠  Developed the prediction logic for forecasting game outcomes.<br/>
+&emsp;•⁠  Tested the trained model using the K-fold cross-validation technique, evaluating accuracy, precision, recall, and AUC-ROC metrics.<br/>
 
 ## License
 
