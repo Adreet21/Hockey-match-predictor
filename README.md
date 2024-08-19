@@ -89,11 +89,11 @@ To run this project locally, follow these steps:<br/>
 •⁠  ⁠**Maher Nurul Huda**<br/>
 &emsp;•⁠  Developed the React website that showcases our project.<br/>
 &emsp;•⁠  Wrote the Python web scraping code using Selenium to gather both upcoming game schedules and all historical hockey game data and stats.<br/>
-&emsp;•⁠  Integrated the backend and frontend code, handling all GET and POST requests for smooth data flow between the model and the user interface.<br/>
+&emsp;•⁠  Integrated the backend and frontend code, handling all GET and POST requests for smooth data flow between the model and the user interface.<br/><br/>
 •⁠  ⁠**Syed Shahmeer Rahman**<br/>
 &emsp;•⁠  Preprocessed the collected data, handling missing values, feature scaling, and data transformations.<br/>
 &emsp;•⁠  Structured the data for machine learning input.<br/>
-&emsp;•⁠  Optimized the data pipeline to ensure efficient processing and integration with the machine learning model.<br/>
+&emsp;•⁠  Optimized the data pipeline to ensure efficient processing and integration with the machine learning model.<br/><br/>
 •⁠  ⁠**Sadman Sami**<br/>
 &emsp;•⁠  Implemented the Random Forest Classifier to train the model using the preprocessed data.<br/>
 &emsp;•⁠  Developed the prediction logic for forecasting game outcomes.<br/>
