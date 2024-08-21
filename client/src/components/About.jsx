@@ -13,7 +13,7 @@ const About = () => {
     
           <motion.p
             variants={fadeIn("", "", 0.1, 1)}
-            className='mt-4 text-white text-[17px] max-w-5xl leading-[30px]'
+            className='mt-4 text-white text-[17px] max-w-5xl leading-[30px] text-justify'
           >
             Welcome to <span className="orange-text-gradient" style={{ whiteSpace: 'nowrap' }}>NHL Games Predictions</span>, your go-to platform for predicting the outcomes of upcoming NHL matches! 
             Using an advanced machine learning algorithm, we analyze a vast array of historical data, including past match results, player statistics, team performance, and various other factors, 

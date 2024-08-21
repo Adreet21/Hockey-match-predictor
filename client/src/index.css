@@ -141,6 +141,22 @@
   padding-top: 40px !important;
 }
 
+.metrics-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Adjust the gap between cards as needed */
+  margin: 10px;
+}
+
+.metrics-card {
+  flex: 1 1 calc(50% - 16px); /* 50% width minus the gap to make two cards fit per row */
+  background-color: #1A1A1A;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 1);
+  text-align: center;
+}
+
 .game-prediction-box {
   margin-top: 50px;
   margin-left: 90px;

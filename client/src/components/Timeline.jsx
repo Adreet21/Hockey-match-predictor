@@ -91,7 +91,7 @@ const Timeline = () => {
   return (
     <div className="flex flex-col pb-20">
       {loading ? (
-        <LoadingScreen message={"Fetching Game Schedule..."} />
+        <LoadingScreen message={"Fetching Latest Game Schedule..."} />
       ) : (
         <VerticalTimeline>
           {gameSchedule.map((game, index) => (

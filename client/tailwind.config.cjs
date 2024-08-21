@@ -9,7 +9,7 @@ module.exports = {
         secondary: "#14213D", // navy blue
         tertiary: "#FCA311", // orange
         "white-inactive": "#E5E5E5",
-        "black-100": "#100d25",
+        "black-secondary": "#1A1A1A",
         "black-200": "#090325",
         "white-100": "#f3f3f3",
       },

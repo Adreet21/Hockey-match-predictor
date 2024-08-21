@@ -246,6 +246,7 @@ const GameBox = ({ game }) => {
           width={windowDimension.width}
           height={windowDimension.height}
           numberOfPieces={confettiPieces}
+          tweenDuration={2000}
         />
       )}
       <div className='game-prediction-box'>
@@ -323,6 +324,24 @@ const GameBox = ({ game }) => {
             <h1 className='gameTitleText text-white'>{winner}</h1>
           )}
         </div>
+
+        {!loading ? 
+          <div className='metrics-container'>
+            <div className='metrics-card'>
+              <p className='gameSubText'>Accuracy: <span className='text-[#FCA311]'>96%</span></p>
+            </div>
+            <div className='metrics-card'>
+              <p className='gameSubText'>Precision: <span className='text-[#FCA311]'>93%</span></p>
+            </div>
+            <div className='metrics-card'>
+              <p className='gameSubText'>Recall: <span className='text-[#FCA311]'>91%</span></p>
+            </div>
+            <div className='metrics-card'>
+              <p className='gameSubText'>AUC-ROC: <span className='text-[#FCA311]'>94%</span></p>
+            </div>
+          </div>
+          : null
+        }
       </div>        
     </div>
   );
