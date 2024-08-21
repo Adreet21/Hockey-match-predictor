@@ -1,70 +1,72 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
-from datetime import datetime
 
-def plot_logic_line_graphs(data, output_dir):
-    # Create a directory to save the graphs if it doesn't exist
-    os.makedirs(output_dir, exist_ok=True)
+# Load the data with the correct path
+file_path = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/nhl_matches.csv'
+df = pd.read_csv(file_path)
 
-    # Get unique teams
-    teams = data['Team'].unique()
+# Ensure the 'Date' column is in datetime format
+df['Date'] = pd.to_datetime(df['Date'])
 
-    for team in teams:
-        team_data = data[data['Team'] == team].sort_values(by='Date')
-        
-        # Create a logic line graph based on Wins (1) and Losses (0)
-        team_data['State'] = team_data['W'].apply(lambda x: 1 if x > 0 else 0)
+# Sort by date to ensure cumulative calculation is correct
+df = df.sort_values(by='Date')
 
-        # Plot the step function without markers
-        plt.figure(figsize=(18, 5), facecolor='#1A1A1A')  # Set background color
-        ax = plt.gca()
-        ax.set_facecolor('#1A1A1A')  # Set background color for the plot area
+# Create a directory to save the graphs in a writable location
+output_dir = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/nhl_team_graphs'
+os.makedirs(output_dir, exist_ok=True)
 
-        plt.step(team_data['Date'], team_data['State'], where='mid', color='#FCA311', lw=3, label='Win/Loss State')  # Set line color
+# Initialize a dictionary to store cumulative points for each team
+teams = {}
 
-        # Add labels and title
-        plt.xlabel('Date', color='#FFFFFF')  # Set label color
-        plt.ylabel('Game Results', color='#FFFFFF')  # Set label color
-        plt.title(f'{team} - Logic Line Graph of Win/Loss State', color='#FFFFFF')  # Set title color
-        plt.ylim(-0.1, 1.1)  # Keep y-axis between 0 and 1
-        plt.yticks([0, 1], ['Loss', 'Win'], color='#FFFFFF')  # Set y-tick labels color
-        
-        # Set x-tick labels color
-        plt.xticks(rotation=45, color='#FFFFFF')
-        
-        # Adding a background grid for better readability
-        plt.grid(True, which='both', linestyle='--', linewidth=0.5, color='#FFFFFF')  # Set grid color
+# Iterate through the dataframe and calculate cumulative points
+for index, row in df.iterrows():
+    season = row['Season']
+    team = row['Team']
+    points = row['P']
 
+    # Update cumulative points for the team
+    if team not in teams:
+        teams[team] = {}
+    if season not in teams[team]:
+        teams[team][season] = {'GamesPlayed': 0, 'CumulativePoints': []}
     
-        # Set axis color
-        ax.spines['bottom'].set_color('#FFFFFF')
-        ax.spines['left'].set_color('#FFFFFF')
-        ax.spines['top'].set_color('#1A1A1A')  # Hide top and right spines to match background
-        ax.spines['right'].set_color('#1A1A1A')
+    teams[team][season]['GamesPlayed'] += 1
+    if teams[team][season]['CumulativePoints']:
+        new_cumulative_points = teams[team][season]['CumulativePoints'][-1] + points
+    else:
+        new_cumulative_points = points
+    
+    teams[team][season]['CumulativePoints'].append(new_cumulative_points)
 
-        # Save the plot as an image file
-        output_file = os.path.join(output_dir, f'{team}_WL_graph.png')
-        plt.savefig(output_file, bbox_inches='tight', facecolor='#1A1A1A')
-        plt.close()
+# Generate and save the graphs for each team
+for team, seasons in teams.items():
+    plt.figure(figsize=(10, 6))
+    
+    # Set the background color
+    plt.gca().set_facecolor('#1A1A1A')
+    plt.gcf().set_facecolor('#1A1A1A')
 
-if __name__ == "__main__":
-    # Example usage
-    input_csv = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/nhl_matches.csv'  # Replace with your file path
-    output_dir = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/Team_graphs'  # Replace with your output directory
+    for season, data in seasons.items():
+        games_played = range(1, data['GamesPlayed'] + 1)
+        plt.plot(games_played, data['CumulativePoints'], label=f'Season {season} (Total: {data["CumulativePoints"][-1]})')
 
-    # Load the CSV file
-    data = pd.read_csv(input_csv)
+    # Set the title and labels with the specified colors
+    plt.title(f'Cumulative Points - {team}', color='#FFFFFF')
+    plt.xlabel('Games Played', color='#FFFFFF')
+    plt.ylabel('Cumulative Points', color='#FFFFFF')
+    
+    # Set axis color
+    plt.tick_params(axis='x', colors='#FFFFFF')
+    plt.tick_params(axis='y', colors='#FFFFFF')
 
-    # Convert 'Date' to datetime format for consistency
-    data['Date'] = pd.to_datetime(data['Date'])
+    # Set legend with white text
+    plt.legend(facecolor='#1A1A1A', edgecolor='#FFFFFF', labelcolor='#FFFFFF', loc='upper left')
+    plt.grid(True, color='#444444')
 
-    # Define the start and end of the season
-    season_start = datetime(2023, 10, 1)
-    season_end = datetime(2024, 4, 30)
+    # Save the plot
+    plt_path = os.path.join(output_dir, f'{team}_cumulative_points.png')
+    plt.savefig(plt_path)
+    plt.close()
 
-    # Filter data to include only the last season
-    data = data[(data['Date'] >= season_start) & (data['Date'] <= season_end)]
-
-    # Generate enhanced logic line graphs
-    plot_logic_line_graphs(data, output_dir)
+print("Graphs have been generated and saved successfully.")
