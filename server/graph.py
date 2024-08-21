@@ -34,28 +34,24 @@ def plot_logic_line_graphs(data, output_dir):
         plt.xticks(rotation=45, color='#FFFFFF')
         
         # Adding a background grid for better readability
-        plt.grid(True, which = 'both', linestyle = '--', linewidth = 0.5, color = '#FFFFFF')
+        plt.grid(True, which='both', linestyle='--', linewidth=0.5, color='#FFFFFF')  # Set grid color
 
-        # Limit the number of x-axis labels to avoid clutter
-        #plt.gca().xaxis.set_major_locator(plt.MaxNLocator(8))  # Reduce number of x-ticks
-
+    
         # Set axis color
         ax.spines['bottom'].set_color('#FFFFFF')
         ax.spines['left'].set_color('#FFFFFF')
-
-        # Hide top and right spines to match background
-        ax.spines['top'].set_color('#1A1A1A')  
+        ax.spines['top'].set_color('#1A1A1A')  # Hide top and right spines to match background
         ax.spines['right'].set_color('#1A1A1A')
 
         # Save the plot as an image file
-        output_file = os.path.join(output_dir, f'{team}_Win/Loss_graph.png')
-        plt.savefig(output_file, bbox_inches = 'tight', facecolor = '#1A1A1A')
+        output_file = os.path.join(output_dir, f'{team}_WL_graph.png')
+        plt.savefig(output_file, bbox_inches='tight', facecolor='#1A1A1A')
         plt.close()
 
 if __name__ == "__main__":
     # Example usage
-    input_csv = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/nhl_matches.csv'
-    output_dir = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/team_Win/Loss_graph'
+    input_csv = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/nhl_matches.csv'  # Replace with your file path
+    output_dir = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/Team_graphs'  # Replace with your output directory
 
     # Load the CSV file
     data = pd.read_csv(input_csv)
