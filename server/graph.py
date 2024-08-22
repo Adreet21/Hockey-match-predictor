@@ -14,7 +14,7 @@ df = df.sort_values(by='Date')
 
 # Create a directory to save the graphs in a writable location
 output_dir = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/client/public/graphs'
-os.makedirs(output_dir, exist_ok = True)
+os.makedirs(output_dir, exist_ok=True)
 
 # Initialize a dictionary to store cumulative points for each team
 teams = {}
@@ -28,12 +28,10 @@ for index, row in df.iterrows():
     # Update cumulative points for the team
     if team not in teams:
         teams[team] = {}
-        
     if season not in teams[team]:
         teams[team][season] = {'GamesPlayed': 0, 'CumulativePoints': []}
     
     teams[team][season]['GamesPlayed'] += 1
-
     if teams[team][season]['CumulativePoints']:
         new_cumulative_points = teams[team][season]['CumulativePoints'][-1] + points
     else:
@@ -58,17 +56,17 @@ for team, seasons in teams.items():
     plt.xlim(left=0)
     plt.ylim(bottom=0)
 
-    # Set the title and labels with the specified colors
-    plt.title(f'Cumulative Points - {team}', color='#FFFFFF')
-    plt.xlabel('Games Played', color='#FFFFFF')
-    plt.ylabel('Cumulative Points', color='#FFFFFF')
+    # Set the title and labels with larger font size and bold text
+    plt.title(f'Cumulative Points - {team}', color='#FFFFFF', fontsize=18, fontweight='bold')
+    plt.xlabel('Games Played', color='#FFFFFF', fontsize=14, fontweight='bold')
+    plt.ylabel('Cumulative Points', color='#FFFFFF', fontsize=14, fontweight='bold')
     
-    # Set axis color
-    plt.tick_params(axis='x', colors='#FFFFFF')
-    plt.tick_params(axis='y', colors='#FFFFFF')
+    # Set axis tick labels with larger font size
+    plt.tick_params(axis='x', colors='#FFFFFF', labelsize=12)
+    plt.tick_params(axis='y', colors='#FFFFFF', labelsize=12)
 
-    # Set legend with white text
-    plt.legend(facecolor='#1A1A1A', edgecolor='#FFFFFF', labelcolor='#FFFFFF', loc='upper left')
+    # Set legend with larger font size and white text
+    plt.legend(facecolor='#1A1A1A', edgecolor='#FFFFFF', labelcolor='#FFFFFF', fontsize=12, loc='upper left')
     plt.grid(True, color='#444444')
 
     # Save the plot
