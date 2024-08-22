@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ReactConfetti from 'react-confetti';
 import LoadingScreen from '../LoadingScreen';
-import graph from './graph.png';
 
 const GameBox = ({ game }) => {
   const [isLaptop, setIsLaptop] = useState(false);
@@ -114,6 +113,8 @@ const GameBox = ({ game }) => {
       game.home_logo = "https://assets.nhle.com/logos/nhl/svg/NYI_dark.svg"
     }
   }
+  let away = game.away_team + " " + away_team;
+  let home = game.home_team + " " + home_team;
 
   // Check type of device
   useEffect(() => {
@@ -185,8 +186,6 @@ const GameBox = ({ game }) => {
     setLoading(true);
 
     // Format the parameters so that it matches format of the csv file
-    let away = game.away_team + " " + away_team;
-    let home = game.home_team + " " + home_team;
     let date = formatDate(game.date)
 
     try {
@@ -346,8 +345,8 @@ const GameBox = ({ game }) => {
 
         {!loading ? 
           <div className='image-container'>
-            <img src={graph} alt='img' className='image-card'/>
-            <img src={graph} alt='img' className='image-card'/>
+            <img src={`/graphs/${away}.png`} alt='img' className='image-card'/>
+            <img src={`/graphs/${home}.png`} alt='img' className='image-card'/>
           </div>
           : null
         }
