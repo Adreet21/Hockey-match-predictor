@@ -52,6 +52,10 @@ for team, seasons in teams.items():
         season_label = f'{season-1}-{season} Season (Total: {data["CumulativePoints"][-1]})'
         plt.plot(games_played, data['CumulativePoints'], label=season_label)  # Use default colors
 
+    # Set axis limits to ensure 0 starts at the intersection of x and y axes
+    plt.xlim(left=0)
+    plt.ylim(bottom=0)
+
     # Set the title and labels with the specified colors
     plt.title(f'Cumulative Points - {team}', color='#FFFFFF')
     plt.xlabel('Games Played', color='#FFFFFF')
