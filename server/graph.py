@@ -70,7 +70,7 @@ for team, seasons in teams.items():
     plt.grid(True, color='#444444')
 
     # Save the plot
-    plt_path = os.path.join(output_dir, f'{team}_cumulative_points.png')
+    plt_path = os.path.join(output_dir, f'{team}_graph.png')
     plt.savefig(plt_path)
     plt.close()
 
