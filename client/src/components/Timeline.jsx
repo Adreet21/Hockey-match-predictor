@@ -21,7 +21,6 @@ const GameCard = ({ game, index }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    // navigate(`/game/${index}`);
     navigate(`/game/${index}`, { state: { game } });
   };
 
@@ -75,11 +74,18 @@ const Timeline = () => {
   const fetchAPI = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:8080/game-schedule");
-      setGameSchedule(response.data);
-    } catch {
+      const storedSchedule = sessionStorage.getItem('gameSchedule');
+      if (storedSchedule) {
+        setGameSchedule(JSON.parse(storedSchedule));
+        setLoading(false);
+      } else {
+        const response = await axios.get("http://localhost:8080/game-schedule");
+        setGameSchedule(response.data);
+        sessionStorage.setItem('gameSchedule', JSON.stringify(response.data));
+        setLoading(false);
+      }
+    } catch (error) {
       console.error('Error fetching game schedule:', error);
-    } finally {
       setLoading(false);
     }
   }
