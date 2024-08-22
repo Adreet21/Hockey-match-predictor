@@ -23,6 +23,7 @@ This project is a machine learning-based application designed to predict the out
 
 •⁠  ⁠**Historical Data Analysis:** The model uses past game results, team statistics, and other relevant data to train the predictive algorithm.<br/>
 •⁠  ⁠**Prediction Accuracy:** Our model achieves an accuracy of XX% on test data.<br/>
+•⁠  ⁠**Visualization:** The project includes various visualizations to help interpret the data and the model's predictions.<br/>
 •  **User-Friendly Website:** A website with a highly elegant and easy-to-follow UI, optimized for an excellent user experience, that displays upcoming matches and their predicted outcomes.<br/>
 
 ## Data Collection
@@ -92,8 +93,8 @@ To run this project locally, follow these steps:<br/>
 &emsp;•⁠  Integrated the backend and frontend code, handling all GET and POST requests for smooth data flow between the model and the user interface.<br/><br/>
 •⁠  ⁠**Syed Shahmeer Rahman**<br/>
 &emsp;•⁠  Preprocessed the collected data, handling missing values, feature scaling, and data transformations.<br/>
-&emsp;•⁠  Structured the data for machine learning input.<br/>
-&emsp;•⁠  Optimized the data pipeline to ensure efficient processing and integration with the machine learning model.<br/><br/>
+&emsp;•⁠  Optimized the data pipeline to ensure efficient processing and integration with the machine learning model.<br/>
+&emsp;•⁠  Developed insightful visualizations, enabling comparative analysis of team performance trends.<br/><br/>
 •⁠  ⁠**Sadman Sami**<br/>
 &emsp;•⁠  Implemented the Random Forest Classifier to train the model using the preprocessed data.<br/>
 &emsp;•⁠  Developed the prediction logic for forecasting game outcomes.<br/>
