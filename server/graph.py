@@ -13,7 +13,7 @@ df['Date'] = pd.to_datetime(df['Date'])
 df = df.sort_values(by='Date')
 
 # Create a directory to save the graphs in a writable location
-output_dir = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/nhl_team_graphs'
+output_dir = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/client/src/assets/nhl_team_graphs'
 os.makedirs(output_dir, exist_ok=True)
 
 # Initialize a dictionary to store cumulative points for each team
@@ -47,9 +47,10 @@ for team, seasons in teams.items():
     plt.gca().set_facecolor('#1A1A1A')
     plt.gcf().set_facecolor('#1A1A1A')
 
-    for season, data in seasons.items():
+    for i, (season, data) in enumerate(seasons.items()):
         games_played = range(1, data['GamesPlayed'] + 1)
-        plt.plot(games_played, data['CumulativePoints'], label=f'Season {season} (Total: {data["CumulativePoints"][-1]})')
+        season_label = f'{season-1}-{season} Season (Total: {data["CumulativePoints"][-1]})'
+        plt.plot(games_played, data['CumulativePoints'], label=season_label)  # Use default colors
 
     # Set the title and labels with the specified colors
     plt.title(f'Cumulative Points - {team}', color='#FFFFFF')
