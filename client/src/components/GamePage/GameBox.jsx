@@ -12,6 +12,8 @@ const GameBox = ({ game }) => {
   const [windowDimension, setDimension] = useState({width: window.innerWidth, height: window.innerHeight});
   const [showConfetti, setShowConfetti] = useState(false);
   const [confettiPieces, setConfettiPieces] = useState(200); // Initial number of confetti pieces
+  const [awayExists, setAwayExists] = useState(false);
+  const [homeExists, setHomeExists] = useState(false);
 
   const NHL_TEAMS = {
     "Boston": "Bruins",
@@ -45,7 +47,7 @@ const GameBox = ({ game }) => {
     "San Jose": "Sharks",
     "Seattle": "Kraken",
     "Vancouver": "Canucks",
-    "Vegas": "Knights",
+    "Vegas": "Golden Knights",
     "Utah": "Utah",
   };
   const NHL_TEAMS_ABR = {
@@ -115,6 +117,18 @@ const GameBox = ({ game }) => {
   }
   let away = game.away_team + " " + away_team;
   let home = game.home_team + " " + home_team;
+
+  // Check if we have any data on the teams
+  const checkImageExists = (teamName, setExists) => {
+    const img = new Image();
+    img.src = `/graphs/${teamName}.png`;
+    img.onload = () => setExists(true);
+    img.onerror = () => setExists(false);
+  };
+  useEffect(() => {
+    checkImageExists(away, setAwayExists);
+    checkImageExists(home, setHomeExists);
+  }, [away, home]);  
 
   // Check type of device
   useEffect(() => {
@@ -209,23 +223,25 @@ const GameBox = ({ game }) => {
         } else {
           setWinner(home_team);
         }
-      } else if (response.data.winner == "No historical data available on Utah") {
-        // No historical data available on Utah
+      } else if (!awayExists || !homeExists) {
+        // No historical data available on one of the teams
         setWinner("No Data");
       } else {
         // Draw
         setWinner("Draw");
       }
 
-      setShowConfetti(true);
+      if (awayExists && homeExists) {
+        setShowConfetti(true);
 
-      // Stop confetti after 3 seconds
-      const stopConfettiTimer = setTimeout(() => {
-        setConfettiPieces(0);
-      }, 3000); // 3000 milliseconds = 3 seconds
+        // Stop confetti after 3 seconds
+        const stopConfettiTimer = setTimeout(() => {
+          setConfettiPieces(0);
+        }, 3000); // 3000 milliseconds = 3 seconds
 
-      // Cleanup the stop confetti timer if the component is unmounted
-      return () => clearTimeout(stopConfettiTimer);
+        // Cleanup the stop confetti timer if the component is unmounted
+        return () => clearTimeout(stopConfettiTimer);
+      }
 
     } catch (error) {
       console.error('Error fetching prediction:', error);
@@ -325,7 +341,7 @@ const GameBox = ({ game }) => {
           )}
         </div>
 
-        {!loading ? 
+        {!loading && awayExists && homeExists ? 
           <div className='metrics-container'>
             <div className='metrics-card'>
               <p className='gameSubText'>Accuracy: <span className='text-[#FCA311]'>96%</span></p>
@@ -343,7 +359,7 @@ const GameBox = ({ game }) => {
           : null
         }
 
-        {!loading ? 
+        {!loading && awayExists && homeExists ? 
           <div className='image-container'>
             <img src={`/graphs/${away}.png`} alt='img' className='image-card'/>
             <img src={`/graphs/${home}.png`} alt='img' className='image-card'/>
