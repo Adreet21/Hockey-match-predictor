@@ -31,7 +31,7 @@ for index, row in df.iterrows():
     if season not in teams[team]:
         teams[team][season] = {'GamesPlayed': 0, 'CumulativePoints': []}
     
-    teams[team][season]['GamesPlayed'] + =  1
+    teams[team][season]['GamesPlayed'] +=  1
     if teams[team][season]['CumulativePoints']:
         new_cumulative_points = teams[team][season]['CumulativePoints'][-1] + points
     else:
