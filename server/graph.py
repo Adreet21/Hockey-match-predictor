@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 
 # Load the data with the correct path
-file_path = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/server/nhl_matches.csv'
+file_path = './server/nhl_matches.csv'
 df = pd.read_csv(file_path)
 
 # Ensure the 'Date' column is in datetime format
@@ -13,7 +13,7 @@ df['Date'] = pd.to_datetime(df['Date'])
 df = df.sort_values(by = 'Date')
 
 # Create a directory to save the graphs in a writable location
-output_dir = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/client/public/graphs'
+output_dir = './client/public/graphs'
 os.makedirs(output_dir, exist_ok = True)
 
 # Initialize a dictionary to store cumulative points for each team
