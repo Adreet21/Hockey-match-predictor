@@ -146,6 +146,7 @@
   flex-wrap: wrap;
   gap: 16px; /* Adjust the gap between cards as needed */
   margin: 10px;
+  justify-content: space-between;
 }
 
 .metrics-card {
@@ -155,6 +156,29 @@
   border-radius: 10px;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 1);
   text-align: center;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap; /* Prevents wrapping to ensure side-by-side layout */
+  justify-content: space-between; /* Spreads out the images evenly */
+  align-items: center; /* Aligns images vertically */
+  margin: 10px;
+  margin-top: 16px;
+  gap: 16px; /* Space between the images */
+}
+
+.image-card {
+  flex-grow: 1; /* Allows images to grow and fill the available space */
+  max-width: calc(50% - 8px); /* Ensures each image does not exceed half the container's width minus half the gap */
+  border-radius: 10px; /* Rounds the corners of the images */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 1); /* Adds a shadow for better visibility */
+}
+
+@media (max-width: 970px) {
+  .image-card {
+    max-width: 100%; /* Allows each image to take full width of the container on small screens */
+  }
 }
 
 .game-prediction-box {
