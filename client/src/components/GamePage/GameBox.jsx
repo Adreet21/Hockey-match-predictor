@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ReactConfetti from 'react-confetti';
 import LoadingScreen from '../LoadingScreen';
+import graph from './graph.png';
 
 const GameBox = ({ game }) => {
   const [isLaptop, setIsLaptop] = useState(false);
@@ -339,6 +340,14 @@ const GameBox = ({ game }) => {
             <div className='metrics-card'>
               <p className='gameSubText'>AUC-ROC: <span className='text-[#FCA311]'>94%</span></p>
             </div>
+          </div>
+          : null
+        }
+
+        {!loading ? 
+          <div className='image-container'>
+            <img src={graph} alt='img' className='image-card'/>
+            <img src={graph} alt='img' className='image-card'/>
           </div>
           : null
         }
