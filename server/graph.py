@@ -13,7 +13,7 @@ df['Date'] = pd.to_datetime(df['Date'])
 df = df.sort_values(by='Date')
 
 # Create a directory to save the graphs in a writable location
-output_dir = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/client/src/assets/nhl_team_graphs'
+output_dir = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/client/public/graphs'
 os.makedirs(output_dir, exist_ok=True)
 
 # Initialize a dictionary to store cumulative points for each team
@@ -70,7 +70,7 @@ for team, seasons in teams.items():
     plt.grid(True, color='#444444')
 
     # Save the plot
-    plt_path = os.path.join(output_dir, f'{team}_graph.png')
+    plt_path = os.path.join(output_dir, f'{team}.png')
     plt.savefig(plt_path)
     plt.close()
 
