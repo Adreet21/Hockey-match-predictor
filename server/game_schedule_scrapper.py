@@ -52,7 +52,7 @@ def fetch_game_schedule():
     # chrome_options.add_argument("--remote-debugging-port=9222")  # Debugging port
 
     # Use Selenium to fetch the page with dynamic content
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(options = chrome_options)
     driver.get(URL)
 
     # Wait for a few seconds for dynamic content to load

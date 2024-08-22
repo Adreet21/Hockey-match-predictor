@@ -14,7 +14,7 @@ df = df.sort_values(by='Date')
 
 # Create a directory to save the graphs in a writable location
 output_dir = '/Users/syedshahmeerrahman/Desktop/GitHub/Projects/Hockey-match-predictor/client/public/graphs'
-os.makedirs(output_dir, exist_ok=True)
+os.makedirs(output_dir, exist_ok = True)
 
 # Initialize a dictionary to store cumulative points for each team
 teams = {}
@@ -28,10 +28,12 @@ for index, row in df.iterrows():
     # Update cumulative points for the team
     if team not in teams:
         teams[team] = {}
+        
     if season not in teams[team]:
         teams[team][season] = {'GamesPlayed': 0, 'CumulativePoints': []}
     
     teams[team][season]['GamesPlayed'] += 1
+
     if teams[team][season]['CumulativePoints']:
         new_cumulative_points = teams[team][season]['CumulativePoints'][-1] + points
     else:

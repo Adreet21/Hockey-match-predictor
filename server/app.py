@@ -11,7 +11,7 @@ def game_schedule():
     SCHEDULE = game_schedule_scrapper.fetch_game_schedule()
     return jsonify(SCHEDULE)
 
-@app.route('/game-prediction', methods=['POST'])
+@app.route('/game-prediction', methods = ['POST'])
 def get_predictions():
     # Get game data from the request
     game_data = request.json
@@ -26,4 +26,4 @@ def get_predictions():
     return jsonify({"winner": winner})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(debug = True, port = 8080)

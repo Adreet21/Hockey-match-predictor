@@ -92,7 +92,7 @@ def fetch_nhl_stats():
                     data.append(cols)
 
                 # Convert the data into a DataFrame and set the column names
-                df = pd.DataFrame(data, columns=headers)
+                df = pd.DataFrame(data, columns = headers)
 
                 # Add 'Season' column
                 df['Season'] = year
@@ -102,8 +102,8 @@ def fetch_nhl_stats():
                 df['Opponent'] = df['Game'].str[-3:].apply(lambda x: NHL_TEAMS.get(x))
 
                 # Drop the original 'Game' column and the 'T' column
-                df.drop(columns=['Game'], inplace=True)
-                df.drop(columns=['T'], inplace=True)
+                df.drop(columns = ['Game'], inplace = True)
+                df.drop(columns = ['T'], inplace = True)
 
                 # Update MATCHES
                 MATCHES.append(df)
@@ -157,7 +157,7 @@ def fetch_nhl_stats():
     # print(MATCHES_DF)
 
     # Save the DataFrame to a CSV file
-    MATCHES_DF.to_csv('nhl_matches.csv', index=False)
+    MATCHES_DF.to_csv('nhl_matches.csv', index = False)
 
 
 if __name__=="__main__":

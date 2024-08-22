@@ -36,9 +36,6 @@ def predict_winner(away_team, home_team, date):
     home_team_avg = team_averages[team_averages["Team"] == home_team].iloc[0]
     away_team_avg = team_averages[team_averages["Team"] == away_team].iloc[0]
 
-    #this list will contain the data about prediction
-    predictions = []
-
     #this list will contain game_data
     game_data_list = []
     
