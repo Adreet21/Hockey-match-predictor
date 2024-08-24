@@ -211,18 +211,10 @@ const GameBox = ({ game }) => {
 
       if (response.data.winner == away) {
         // Away Team Wins
-        if (isMobile || isXSMobile) {
-          setWinner(away_team_abr);
-        } else {
-          setWinner(away_team);
-        }
+        setWinner(away_team);
       } else if (response.data.winner == home) {
         // Home Team Wins
-        if (isMobile || isXSMobile) {
-          setWinner(home_team_abr);
-        } else {
-          setWinner(home_team);
-        }
+        setWinner(home_team);
       } else if (!awayExists || !homeExists) {
         // No historical data available on one of the teams
         setWinner("No Data");
@@ -337,7 +329,13 @@ const GameBox = ({ game }) => {
           {loading ? (
             <LoadingScreen message={"Analyzing..."}/>
           ) : (
-            <h1 className='gameTitleText text-white'>{winner}</h1>
+            <h1 className='gameTitleText text-white'>
+              {winner === "Draw" || winner === "No Data" || winner === "Error" 
+                ? winner 
+                : (isMobile || isXSMobile) 
+                  ? (winner === away_team ? away_team_abr : home_team_abr)
+                  : winner}
+            </h1>
           )}
         </div>
 
