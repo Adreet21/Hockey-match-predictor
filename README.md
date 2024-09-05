@@ -22,7 +22,7 @@ This project is a machine learning-based application designed to predict the out
 ## Features
 
 •⁠  ⁠**Historical Data Analysis:** The model uses past game results, team statistics, and other relevant data to train the predictive algorithm.<br/>
-•⁠  ⁠**Prediction Accuracy:** Our model achieves an accuracy of XX% on test data.<br/>
+•⁠  ⁠**Prediction Accuracy:** Our model achieves an accuracy of 71.23% on test data.<br/>
 •⁠  ⁠**Visualization:** The project includes various visualizations to help interpret the data and the model's predictions.<br/>
 •  **User-Friendly Website:** A responsive website with a highly elegant and easy-to-follow UI, optimized for an excellent user experience, that displays upcoming matches and their predicted outcomes.<br/>
 
