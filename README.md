@@ -43,27 +43,32 @@ We employed the following machine learning techniques:<br/>
 ## Results
 
 The final model was trained on 2 seasons of hockey data and tested using the K-fold cross-validation technique. The model achieved:<br/>
-&emsp;•⁠  ⁠**Accuracy:** XX%<br/>
-&emsp;•⁠  ⁠**Precision:** XX%<br/>
-&emsp;•⁠  ⁠**Recall:** XX%<br/>
-&emsp;•⁠  ⁠**AUC-ROC:** XX%<br/>
+&emsp;•⁠  ⁠**Accuracy:** 71.23%<br/>
+&emsp;•⁠  ⁠**Precision:** 64.47%<br/>
+&emsp;•⁠  ⁠**Recall:** 69.03%<br/>
+&emsp;•⁠  ⁠**AUC-ROC:** 73.89%<br/>
 
 ## Installation
 
 To run this project locally, follow these steps:<br/>
 
-1.⁠ ⁠Clone the repository:<br/>
-   ⁠ bash<br/>
-   git clone https://github.com/username/hockey-game-predictor.git<br/>
-    ⁠
-2.⁠ ⁠Navigate to the project directory:<br/>
-   ⁠ bash<br/>
-   cd hockey-game-predictor<br/>
-    ⁠
-3.⁠ ⁠Install the required dependencies:<br/>
-   ⁠ bash<br/>
-   pip install -r requirements.txt<br/>
-    ⁠
+### 1. Clone/Download the Repository
+
+### 2. Navigate to the client directory:
+`$ cd Hockey-match-predictor/client`
+
+### 3. Install Dependencies:
+`$ npm install`
+
+### 4. Then, navigate to the server directory:
+`$ cd ../server`
+
+### 5. Run the python backend script
+`$ python3 app.py`
+
+### 6. Start frontend
+In a separate terminal execute:
+`$ npm run dev`
 
 ## Usage
 
@@ -103,8 +108,3 @@ To run this project locally, follow these steps:<br/>
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.<br/>
-
-## Not functioning?
-
-If you run into difficulties or errors in the code please feel free to reach out.<br/>
-Email: contact@shahmeer.xyz
