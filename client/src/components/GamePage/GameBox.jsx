@@ -342,16 +342,16 @@ const GameBox = ({ game }) => {
         {!loading && awayExists && homeExists ? 
           <div className='metrics-container'>
             <div className='metrics-card'>
-              <p className='gameSubText'>Accuracy: <span className='text-[#FCA311]'>96%</span></p>
+              <p className='gameSubText'>Accuracy: <span className='text-[#FCA311]'>71.23%</span></p>
             </div>
             <div className='metrics-card'>
-              <p className='gameSubText'>Precision: <span className='text-[#FCA311]'>93%</span></p>
+              <p className='gameSubText'>Precision: <span className='text-[#FCA311]'>64.47%</span></p>
             </div>
             <div className='metrics-card'>
-              <p className='gameSubText'>Recall: <span className='text-[#FCA311]'>91%</span></p>
+              <p className='gameSubText'>Recall: <span className='text-[#FCA311]'>69.03%</span></p>
             </div>
             <div className='metrics-card'>
-              <p className='gameSubText'>AUC-ROC: <span className='text-[#FCA311]'>94%</span></p>
+              <p className='gameSubText'>AUC-ROC: <span className='text-[#FCA311]'>73.89%</span></p>
             </div>
           </div>
           : null
