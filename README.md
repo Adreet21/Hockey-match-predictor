@@ -70,26 +70,6 @@ To run this project locally, follow these steps:<br/>
 In a separate terminal execute:
 `$ npm run dev`
 
-## Usage
-
-1.⁠ ⁠Prepare the dataset:<br/>
-   - Place the historical game data in the ⁠ data/ ⁠ directory.<br/>
-   - Ensure the data is in the correct format as specified in the ⁠ data_preprocessing.py ⁠ file.<br/>
-
-2.⁠ ⁠Train the model:<br/>
-   ⁠ bash<br/>
-   python train_model.py<br/>
-    ⁠
-
-3.⁠ ⁠Predict outcomes for upcoming games:<br/>
-   ⁠ bash<br/>
-   python predict.py --input upcoming_games.csv<br/>
-    ⁠
-
-4.⁠ ⁠View results:<br/>
-   - Predictions will be saved in the ⁠ predictions/ ⁠ directory.<br/>
-   - Use the ⁠ visualize_results.py ⁠ script to generate visualizations.<br/>
-
 ## Contributors
 
 •⁠  ⁠**Maher Nurul Huda**<br/>
