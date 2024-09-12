@@ -17,7 +17,6 @@ This project is a machine learning-based application designed to predict the out
 •⁠  ⁠[Usage](#usage)<br/>
 •⁠  ⁠[Contributors](#contributors)<br/>
 •⁠  ⁠[License](#license)<br/>
-•⁠  ⁠[Not functioning?](#not-functioning)<br/>
 
 ## Features
 
