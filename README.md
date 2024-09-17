@@ -69,6 +69,9 @@ To run this project locally, follow these steps:<br/>
 In a separate terminal execute:
 `$ npm run dev`
 
+## Demo video on YouTube
+https://youtu.be/cPGDbJZeprY
+
 ## Contributors
 
 •⁠  ⁠**Maher Nurul Huda**<br/>
