@@ -195,6 +195,19 @@ const GameBox = ({ game }) => {
     return `${year}/${month}/${day}`;
   };
 
+  // Start the confetti
+  const deployConfetti = () => {
+    setShowConfetti(true);
+
+    // Stop confetti after 3 seconds
+    const stopConfettiTimer = setTimeout(() => {
+      setConfettiPieces(0);
+    }, 3000); // 3000 milliseconds = 3 seconds
+
+    // Cleanup the stop confetti timer if the component is unmounted
+    return () => clearTimeout(stopConfettiTimer);
+  }
+
   // Fetch game prediction from ML part
   const fetchPrediction = async () => {
     setLoading(true);
@@ -212,9 +225,11 @@ const GameBox = ({ game }) => {
       if (response.data.winner == away) {
         // Away Team Wins
         setWinner(away_team);
+        deployConfetti()
       } else if (response.data.winner == home) {
         // Home Team Wins
         setWinner(home_team);
+        deployConfetti()
       } else if (!awayExists || !homeExists) {
         // No historical data available on one of the teams
         setWinner("No Data");
@@ -223,17 +238,7 @@ const GameBox = ({ game }) => {
         setWinner("Draw");
       }
 
-      if (awayExists && homeExists) {
-        setShowConfetti(true);
-
-        // Stop confetti after 3 seconds
-        const stopConfettiTimer = setTimeout(() => {
-          setConfettiPieces(0);
-        }, 3000); // 3000 milliseconds = 3 seconds
-
-        // Cleanup the stop confetti timer if the component is unmounted
-        return () => clearTimeout(stopConfettiTimer);
-      }
+      
 
     } catch (error) {
       console.error('Error fetching prediction:', error);
