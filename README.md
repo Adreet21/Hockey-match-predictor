@@ -70,6 +70,9 @@ In a separate terminal execute:
 `$ npm run dev`
 
 ## Demo video on YouTube
+
+https://github.com/user-attachments/assets/ecdea418-d7bc-4157-91d2-310e0ecb19fc
+
 https://youtu.be/cPGDbJZeprY
 
 ## Contributors
