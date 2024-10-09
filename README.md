@@ -66,7 +66,7 @@ To run this project locally, follow these steps:<br/>
 `$ python3 app.py`
 
 ### 6. Start frontend
-In a separate terminal navigate to the client dictionary and execute:
+In a separate terminal navigate to the client dictionary and execute:<br/>
 `$ npm run dev`
 
 ## Demo video on YouTube
