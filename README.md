@@ -81,7 +81,7 @@ https://github.com/user-attachments/assets/ecdea418-d7bc-4157-91d2-310e0ecb19fc
 &emsp;•⁠  Developed the React website that showcases our project.<br/>
 &emsp;•⁠  Wrote the Python web scraping code using Selenium to gather both upcoming game schedules and all historical hockey game data and stats.<br/>
 &emsp;•⁠  Integrated the backend and frontend code, handling all GET and POST requests for smooth data flow between the model and the user interface.<br/><br/>
-•⁠  ⁠**Syed Shahmeer Rahman**<br/>
+•⁠  ⁠**Syed Shahmeer Rahman** https://www.shahmeer.xyz/ <br/>
 &emsp;•⁠  Preprocessed the collected data, handling missing values, feature scaling, and data transformations.<br/>
 &emsp;•⁠  Optimized the data pipeline to ensure efficient processing and integration with the machine learning model.<br/>
 &emsp;•⁠  Developed insightful visualizations, enabling comparative analysis of team performance trends.<br/><br/>
