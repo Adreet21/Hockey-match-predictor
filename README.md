@@ -62,11 +62,11 @@ To run this project locally, follow these steps:<br/>
 ### 4. Then, navigate to the server directory:
 `$ cd ../server`
 
-### 5. Run the python backend script
+### 5. Run the Python backend script
 `$ python3 app.py`
 
 ### 6. Start frontend
-In a separate terminal execute:
+In a separate terminal navigate to the client dictionary and execute:
 `$ npm run dev`
 
 ## Demo video on YouTube
