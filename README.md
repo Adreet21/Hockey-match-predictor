@@ -73,8 +73,8 @@ In a separate terminal execute:
 
 https://github.com/user-attachments/assets/ecdea418-d7bc-4157-91d2-310e0ecb19fc
 
-https://youtu.be/cPGDbJZeprY
-
+[https://youtu.be/cPGDbJZeprY
+](https://www.youtube.com/watch?v=Kxj6o96q-5c)
 ## Contributors
 
 •⁠  ⁠**Maher Nurul Huda**<br/>
