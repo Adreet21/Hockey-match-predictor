@@ -77,7 +77,7 @@ https://github.com/user-attachments/assets/ecdea418-d7bc-4157-91d2-310e0ecb19fc
 ](https://www.youtube.com/watch?v=Kxj6o96q-5c)
 ## Contributors
 
-•⁠  ⁠**Maher Nurul Huda**<br/>
+•⁠  ⁠**Maher Nurul Huda** https://mahxr.com/ <br/>
 &emsp;•⁠  Developed the React website that showcases our project.<br/>
 &emsp;•⁠  Wrote the Python web scraping code using Selenium to gather both upcoming game schedules and all historical hockey game data and stats.<br/>
 &emsp;•⁠  Integrated the backend and frontend code, handling all GET and POST requests for smooth data flow between the model and the user interface.<br/><br/>
